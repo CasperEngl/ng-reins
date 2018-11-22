@@ -29,7 +29,13 @@
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      {
+        "limit": 140,
+        "ignore-pattern": [
+          "^import |^export {(.*?)}",
+          "^`{(.*?)}`"
+        ],
+      }
     ],
     "member-access": false,
     "member-ordering": [
@@ -126,6 +132,12 @@
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true
+    "directive-class-suffix": true,
+    "compilerOptions": {
+      "paths": {
+        "jszip": ["node_modules/jszip/dist/jszip.min.js"],
+        "stream": ["node_modules/readable-stream/readable.js"]
+      }
+    }
   }
 }
