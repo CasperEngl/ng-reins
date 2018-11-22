@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend": {
+    "minimal": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,8 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/frontend",
-            "index": "index.php",
+            "outputPath": "dist/minimal",
+            "index": "src/index.php",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "frontend:build"
+            "browserTarget": "minimal:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "frontend:build:production"
+              "browserTarget": "minimal:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend:build"
+            "browserTarget": "minimal:build"
           }
         },
         "test": {
@@ -108,7 +108,7 @@
         }
       }
     },
-    "frontend-e2e": {
+    "minimal-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -117,11 +117,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "frontend:serve"
+            "devServerTarget": "minimal:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "frontend:serve:production"
+              "devServerTarget": "minimal:serve:production"
             }
           }
         },
@@ -137,5 +137,5 @@
       }
     }
   },
-  "defaultProject": "frontend"
+  "defaultProject": "minimal"
 }

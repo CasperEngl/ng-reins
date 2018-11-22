@@ -46,17 +46,5 @@ export class WordpressService {
         Authorization: `OAuth oauth_consumer_key="${auth.oauth_consumer_key}" oauth_nonce="${auth.oauth_nonce}" oauth_signature="${auth.oauth_signature}" oauth_signature_method="${auth.oauth_signature_method}" oauth_timestamp="${auth.oauth_timestamp}" oauth_version="${auth.oauth_version}"`, // tslint-disable-line
       })
     });
-
-    /*
-    const json = await axios({
-      url: request_data.url,
-      method: request_data.method,
-      headers: {
-        Authorization: `OAuth oauth_consumer_key="${auth.oauth_consumer_key}" oauth_nonce="${auth.oauth_nonce}" oauth_signature="${auth.oauth_signature}" oauth_signature_method="${auth.oauth_signature_method}" oauth_timestamp="${auth.oauth_timestamp}" oauth_version="${auth.oauth_version}"`, // tslint-disable-line
-      }
-    });
-
-    return json;
-    */
   }
 }

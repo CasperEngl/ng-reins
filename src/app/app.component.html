@@ -1,21 +1,5 @@
-<mat-toolbar color="primary">
-  <span>Products</span>
-</mat-toolbar>
+<app-header></app-header>
 <div class="page-wrapper">
-  <div fxLayout="row wrap" fxLayoutGap="16px">
-    <mat-card fxFlex="calc(33% - 16px)" *ngFor="let product of products$ | async">
-      <mat-card-header>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle>{{ product.date_created | date }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content [innerHTML]="product.description"></mat-card-content>
-      <mat-card-actions align="start">
-        <a mat-button [href]="product.permalink">View</a>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+  <router-outlet></router-outlet>
 </div>
-
-{{ env | json }}
-
-<router-outlet></router-outlet>
+<app-footer></app-footer>

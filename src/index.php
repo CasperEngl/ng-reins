@@ -10,14 +10,10 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <?php wp_head(); ?> 
-
 </head>
 <body>
   
   <app-root></app-root>
-
-  <?php wp_footer(); ?>
 
 </body>
 </html>
