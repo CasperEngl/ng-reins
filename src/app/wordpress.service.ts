@@ -13,7 +13,7 @@ export class WordpressService {
 
   getProducts(): Observable<any[]> {
     const request_data = {
-      url: 'http://minimal.test/wp-json/wc/v3/products/',
+      url: `${window.location.origin}/wp-json/wc/v3/products/`,
       method: 'GET',
     };
 
@@ -28,7 +28,7 @@ export class WordpressService {
 
   getProduct(id: number): Observable<any> {
     const request_data = {
-      url: `http://minimal.test/wp-json/wc/v3/products/${id}`,
+      url: `${window.location.origin}/wp-json/wc/v3/products/${id}`,
       method: 'GET',
     };
 
@@ -39,5 +39,13 @@ export class WordpressService {
         Authorization: `OAuth oauth_consumer_key="${auth.oauth_consumer_key}" oauth_nonce="${auth.oauth_nonce}" oauth_signature="${auth.oauth_signature}" oauth_signature_method="${auth.oauth_signature_method}" oauth_timestamp="${auth.oauth_timestamp}" oauth_version="${auth.oauth_version}"`, // tslint-disable-line
       })
     });
+  }
+
+  getPages(): Observable<any> {
+    const request_data = {
+      url: `${window.location.origin}/wp-json/wp/v2/pages`,
+    }
+
+    return this.http.get<any[]>(request_data.url);
   }
 }
