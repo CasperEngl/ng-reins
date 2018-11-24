@@ -1,3 +1,14 @@
-<mat-toolbar color="primary">
-  <span>Minimal</span>
-</mat-toolbar>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a routerLink="/" class="navbar-brand">Minimal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" (click)="menuToggle()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="navbarCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>

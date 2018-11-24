@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  navbarCollapsed = true;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  menuToggle() {
+    this.navbarCollapsed = !this.navbarCollapsed;
   }
 
 }

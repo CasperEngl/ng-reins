@@ -1,0 +1,15 @@
+<article *ngIf="product$ as product">
+  <a [routerLink]="['product', product.id]">
+    <div class="row align-items-center">
+      <header class="col">
+        <h3>{{ product.name }}</h3>
+        <div [innerHTML]="product.short_description"></div>
+      </header>
+      <section class="col-auto">
+        <figure class="product__image">
+          <img [src]="product.images[0].src" [alt]="product.images[0].alt" />
+        </figure>
+      </section>
+    </div>
+  </a>
+</article>

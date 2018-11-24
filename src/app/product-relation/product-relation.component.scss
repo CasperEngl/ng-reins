@@ -1,0 +1,13 @@
+.product__image {
+  overflow: hidden;
+  margin: 0;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    object-fit: cover;
+  }
+}

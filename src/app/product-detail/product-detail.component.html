@@ -1,0 +1,27 @@
+<article *ngIf="product$ as product">
+  <header>
+    <h1>{{ product.name }}</h1>
+    <p class="h4">{{ product.date_created | date }}</p>
+  </header>
+  <section class="row">
+    <div class="col-6 d-flex flex-column" [innerHTML]="product.description">
+    </div>
+    <div class="col-6">
+      <figure class="product__image">
+        <img [src]="product.images[0].src" [alt]="product.images[0].alt" />
+      </figure>
+      <ngb-carousel *ngIf="product.images[1]">
+        <ng-template ngbSlide *ngFor="let image of product.images | slice:1">
+          <img [src]="image.src" alt="image.alt">
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </section>
+  <footer class="mt-5">
+    <div class="row">
+      <div class="col-4" *ngFor="let id of product.related_ids">
+        <app-product-relation [id]="id"></app-product-relation>
+      </div>
+    </div>
+  </footer>
+</article>
