@@ -4,17 +4,6 @@ import { Observable } from 'rxjs';
 
 import { WordpressService } from '../wordpress.service';
 
-export interface IImage {
-  url: string | null;
-  href?: string;
-  clickAction?: Function;
-  caption?: string;
-  title?: string;
-  backgroundSize?: string;
-  backgroundPosition?: string;
-  backgroundRepeat?: string;
-}
-
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
