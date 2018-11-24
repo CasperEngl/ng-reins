@@ -1,27 +1,28 @@
-# Frontend
+# Minimal Theme for WordPress
+Bootstrapped with [angular-cli](https://cli.angular.io/)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
+Use `ng build` from inside the theme to build into the dist folder.
+Add __--watch__ to the build command to watch for changes.
 
-## Development server
+In `functions.php`, make sure scripts are enqueued in the footer.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Example:
+```php
+function minimal_scripts() {
+  $time_format = 'ymd-Gis';
 
-## Code scaffolding
+  $runtime_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/minimal/runtime.js'));
+  $polyfills_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/minimal/polyfills.js'));
+  $styles_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/minimal/styles.js'));
+  $vendor_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/minimal/vendor.js'));
+  $main_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/minimal/main.js'));
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  wp_enqueue_script('minimal-runtime', get_stylesheet_directory_uri() . '/dist/minimal/runtime.js', array(), $runtime_version, true);
+  wp_enqueue_script('minimal-polyfills', get_stylesheet_directory_uri() . '/dist/minimal/polyfills.js', array(), $polyfills_version, true);
+  wp_enqueue_script('minimal-styles', get_stylesheet_directory_uri() . '/dist/minimal/styles.js', array(), $styles_version, true);
+  wp_enqueue_script('minimal-vendor', get_stylesheet_directory_uri() . '/dist/minimal/vendor.js', array(), $vendor_version, true);
+  wp_enqueue_script('minimal-main', get_stylesheet_directory_uri() . '/dist/minimal/main.js', array(), $main_version, true);
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+}
+add_action('wp_enqueue_scripts', 'minimal_scripts');
+```
