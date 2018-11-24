@@ -4,15 +4,15 @@
     <p class="h4">{{ product.date_created | date }}</p>
   </header>
   <section class="row">
-    <div class="col-6 d-flex flex-column" [innerHTML]="product.description">
+    <div class="col-sm-6 d-flex flex-column" [innerHTML]="product.description">
     </div>
-    <div class="col-6">
+    <div class="col-sm-6">
       <figure class="product__image">
-        <img [src]="product.images[0].src" [alt]="product.images[0].alt" />
+        <img [src]="product.images[0].shop_single" [alt]="product.images[0].alt" />
       </figure>
       <ngb-carousel *ngIf="product.images[1]">
         <ng-template ngbSlide *ngFor="let image of product.images | slice:1">
-          <img [src]="image.src" alt="image.alt">
+          <img [src]="image.shop_single" alt="image.alt">
         </ng-template>
       </ngb-carousel>
     </div>
