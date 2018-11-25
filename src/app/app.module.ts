@@ -14,6 +14,8 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductRelationComponent } from './product-relation/product-relation.component';
 import { HomeComponent } from './home/home.component';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { KeysPipe } from './keys.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { HomeComponent } from './home/home.component';
     ProductsComponent,
     ProductDetailComponent,
     ProductRelationComponent,
-    HomeComponent
+    HomeComponent,
+    CartDetailComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

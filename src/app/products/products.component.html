@@ -1,10 +1,22 @@
-<article *ngFor="let product of products$ | async">
-  <header>
-    <h2>{{ product.name }}</h2>
-    <h3>{{ product.date_created | date }}</h3>
-  </header>
-  <section [innerHTML]="product.description"></section>
-  <footer align="start">
-    <a mat-button [routerLink]="['product', product.id]" routerLinkActive="active">View</a>
-  </footer>
-</article>
+<div class="container my-5">
+  <div class="row">
+    <article
+      *ngFor="let product of (products$ | async)"
+      class="col-md-4 col-sm-6"
+    >
+      <header>
+        <h2>{{ product.name }}</h2>
+        <h3>{{ product.date_created | date }}</h3>
+      </header>
+      <section [innerHTML]="product.description"></section>
+      <footer align="start">
+        <a
+          mat-button
+          [routerLink]="['../product', product.id]"
+          routerLinkActive="active"
+          >View</a
+        >
+      </footer>
+    </article>
+  </div>
+</div>

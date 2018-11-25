@@ -1,8 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
+
+export interface ProductData {
+  product_id: number;
+  quantity: number;
+  variation_id?: number;
+  variation?: any[];
+}
+
+export interface CartItem {
+  cart_item_key: string;
+  quantity?: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +25,14 @@ export class WordpressService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<any[]> {
-    const request_data = {
+    const request = {
       url: `${window.location.origin}/wp-json/wc/v3/products/`,
       method: 'GET',
     };
 
-    const auth = environment.oauth.authorize(request_data);
+    const auth = environment.oauth.authorize(request);
 
-    return this.http.get<any[]>(request_data.url, {
+    return this.http.get<any[]>(request.url, {
       headers: new HttpHeaders({
         Authorization: `OAuth oauth_consumer_key="${auth.oauth_consumer_key}" oauth_nonce="${auth.oauth_nonce}" oauth_signature="${auth.oauth_signature}" oauth_signature_method="${auth.oauth_signature_method}" oauth_timestamp="${auth.oauth_timestamp}" oauth_version="${auth.oauth_version}"`, // tslint-disable-line
       })
@@ -27,14 +40,14 @@ export class WordpressService {
   }
 
   getProduct(id: number): Observable<any> {
-    const request_data = {
+    const request = {
       url: `${window.location.origin}/wp-json/wc/v3/products/${id}`,
       method: 'GET',
     };
 
-    const auth = environment.oauth.authorize(request_data);
+    const auth = environment.oauth.authorize(request);
 
-    return this.http.get<any>(request_data.url, {
+    return this.http.get<any>(request.url, {
       headers: new HttpHeaders({
         Authorization: `OAuth oauth_consumer_key="${auth.oauth_consumer_key}" oauth_nonce="${auth.oauth_nonce}" oauth_signature="${auth.oauth_signature}" oauth_signature_method="${auth.oauth_signature_method}" oauth_timestamp="${auth.oauth_timestamp}" oauth_version="${auth.oauth_version}"`, // tslint-disable-line
       })
@@ -42,10 +55,102 @@ export class WordpressService {
   }
 
   getPages(): Observable<any> {
-    const request_data = {
+    const request = {
       url: `${window.location.origin}/wp-json/wp/v2/pages`,
     }
 
-    return this.http.get<any[]>(request_data.url);
+    return this.http.get<any[]>(request.url);
+  }
+
+  addToCart(product_data: ProductData): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart/add`,
+    }
+
+    return this.http.post<ProductData>(request.url, product_data)
+      .pipe(
+        catchError(error => of(`Could not add to cart`, error))
+      );
+  }
+
+  getCart(): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart`,
+    }
+
+    return this.http.get<any>(request.url);
+  }
+
+  clearCart(): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart/clear`,
+    }
+
+    return this.http.post<any>(request.url, null, {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+      }),
+    });
+  }
+
+  countCart(): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart/count-items`,
+    }
+
+    return this.http.get<any>(request.url);
+  }
+  
+  calculateCart(): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart/calculate`,
+    }
+
+    return this.http.post<any>(request.url, {});
+  }
+
+  getCartTotals(): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart/totals`,
+    }
+
+    return this.http.get<any>(request.url);
+  }
+
+  deleteFromCart(cart_item_key: string): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart/cart-item`,
+      data: {
+        cart_item_key,
+      }
+    }
+
+    return this.http.request<any>('delete', request.url, {
+      body: request.data,
+    });
+  }
+
+  restoreToCart(cart_item_key: string): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart/cart-item`,
+      data: {
+        cart_item_key,
+      }
+    }
+
+    return this.http.get<any>(request.url, {
+      params: request.data,
+    });
+  }
+
+  updateInCart(product_data: CartItem): Observable<any> {
+    const request = {
+      url: `${window.location.origin}/wp-json/wc/v2/cart/cart-item`,
+    }
+
+    return this.http.post<CartItem>(request.url, product_data)
+      .pipe(
+        catchError(error => of(`Could update item in cart`, error))
+      );
   }
 }
