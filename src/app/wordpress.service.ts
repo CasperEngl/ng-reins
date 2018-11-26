@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
@@ -14,13 +14,16 @@ export interface ProductData {
 
 export interface CartItem {
   cart_item_key: string;
-  quantity?: number;
+  quantity: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class WordpressService {
+
+  private productsSource = new BehaviorSubject<any[]>([]);
+  products = this.productsSource.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -32,11 +35,13 @@ export class WordpressService {
 
     const auth = environment.oauth.authorize(request);
 
-    return this.http.get<any[]>(request.url, {
+    this.http.get<any[]>(request.url, {
       headers: new HttpHeaders({
         Authorization: `OAuth oauth_consumer_key="${auth.oauth_consumer_key}" oauth_nonce="${auth.oauth_nonce}" oauth_signature="${auth.oauth_signature}" oauth_signature_method="${auth.oauth_signature_method}" oauth_timestamp="${auth.oauth_timestamp}" oauth_version="${auth.oauth_version}"`, // tslint-disable-line
       })
-    });
+    }).subscribe(response => this.productsSource.next(response));
+
+    return this.products;
   }
 
   getProduct(id: number): Observable<any> {
