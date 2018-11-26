@@ -7,8 +7,7 @@
       <div class="row justify-content-between align-items-center">
         <div class="col-auto">
           <a [routerLink]="['../', 'product', cart$[product].product_id]" class="product__name h4">{{ cart$[product].product_name }}</a>
-          <span>{{ cart$[product].line_subtotal / cart$[product] }}</span>
-          <span class="h5 text-muted ml-3">{{ cart$[product].line_subtotal / cart$[product].quantity }} DKK</span>
+          <span class="h5 text-muted ml-3" *mgIf="cart$[product].quantity">{{ cart$[product].line_subtotal / cart$[product].quantity }} DKK</span>
         </div>
         <div class="col-auto">
           <input class="form-control d-inline-block w-auto" type="number" [value]="cart$[product].quantity" (input)="cart$[product].quantity = $event.target.value" (keyup)="changeQuantity($event, product)">
