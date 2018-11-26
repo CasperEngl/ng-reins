@@ -42,7 +42,7 @@ export class CartDetailComponent implements OnInit {
     })
   }
 
-  changeQuantity(event: KeyboardEvent, product) {
+  changeQuantity(event: KeyboardEvent, cart_item_key: string) {
     const target = event.target as HTMLInputElement;
 
     if (!this.quantityChangeSubscriber) {
@@ -56,7 +56,7 @@ export class CartDetailComponent implements OnInit {
           this.quantity = value;
 
           this.wp.updateInCart({
-            cart_item_key: product,
+            cart_item_key: cart_item_key,
             quantity: this.quantity
           }).subscribe(() => this.updateCart());
         });
