@@ -6,13 +6,33 @@
       >
       <div class="row justify-content-between align-items-center">
         <div class="col-auto">
-          {{ cart$[product].product_name }}
+          <a [routerLink]="['../', 'product', cart$[product].product_id]" class="product__name h4">{{ cart$[product].product_name }}</a>
+          <span>{{ cart$[product].line_subtotal / cart$[product] }}</span>
+          <span class="h5 text-muted ml-3">{{ cart$[product].line_subtotal / cart$[product].quantity }} DKK</span>
         </div>
         <div class="col-auto">
-          <input class="form-control d-inline-block w-auto" type="number" [value]="cart$[product].quantity" (input)="cart$[product].quantity = $event.target.value">
-          <a [routerLink]="['../', 'cart', 'remove', cart$[product].key]" class="btn btn-link">Remove</a>
+          <input class="form-control d-inline-block w-auto" type="number" [value]="cart$[product].quantity" (input)="cart$[product].quantity = $event.target.value" (keyup)="changeQuantity($event, product)">
+          <a (click)="removeItem(cart$[product].key)" class="btn btn-link">Remove</a>
         </div>
       </div>
     </li>
   </ul>
+  <div class="row justify-content-end m-0 mt-3" *ngIf="cartTotals$ as cartTotals">
+    <table class="table col-sm-6">
+      <tbody>
+        <tr class="bg-light">
+          <td>Subtotal</td>
+          <td>{{ cartTotals.subtotal }} DKK</td>
+        </tr>
+        <tr class="bg-light">
+          <td>Shipping total</td>
+          <td>{{ cartTotals.shipping_total }} DKK</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{ cartTotals.total }} DKK</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
