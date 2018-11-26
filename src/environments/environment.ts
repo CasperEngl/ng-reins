@@ -20,7 +20,7 @@ export const environment = {
     hash_function(base_string, key) {
       return createHmac('sha1', key).update(base_string).digest('base64');
     },
-  })
+  }),
 };
 
 /*
