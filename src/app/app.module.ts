@@ -16,6 +16,7 @@ import { ProductRelationComponent } from './product-relation/product-relation.co
 import { HomeComponent } from './home/home.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { KeysPipe } from './keys.pipe';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { KeysPipe } from './keys.pipe';
     ProductRelationComponent,
     HomeComponent,
     CartDetailComponent,
-    KeysPipe
+    KeysPipe,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
