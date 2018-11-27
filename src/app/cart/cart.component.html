@@ -1,3 +1,25 @@
-<p>
-  cart works!
-</p>
+<div class="container my-5">
+  <ul class="list-group">
+    <ng-container *ngFor="let product of (cart$ | keys)">
+      <app-cart-detail [product]="cart$[product]"></app-cart-detail>
+    </ng-container>
+  </ul>
+  <div class="row justify-content-end m-0 mt-3" *ngIf="cartTotals$ as cartTotals">
+    <table class="table col-sm-6">
+      <tbody>
+        <tr class="bg-light">
+          <td>Subtotal</td>
+          <td>{{ cartTotals.subtotal }} DKK</td>
+        </tr>
+        <tr class="bg-light">
+          <td>Shipping total</td>
+          <td>{{ cartTotals.shipping_total }} DKK</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{ cartTotals.total }} DKK</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
