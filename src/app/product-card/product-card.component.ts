@@ -35,8 +35,8 @@ import { WordpressService, ProductData } from '../wordpress.service';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: any;
+  
   animate = false;
-
   animationDuration = 2000;
 
   timer: Observable<number>;
