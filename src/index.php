@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Minimal</title>
+  <title>Reins</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Open+Sans:300,300i,600,600i,700,700i" rel="stylesheet">
 
 </head>
 <body>
