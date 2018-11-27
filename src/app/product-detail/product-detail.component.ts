@@ -15,8 +15,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   id: number;
   quantity: number;
   private productSubscription: any;
-  private cart: any;
-  private addedCart: any;
 
   constructor(private wp: WordpressService, private route: ActivatedRoute) {}
 
@@ -35,12 +33,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   addToCart({ product_id }: ProductData) {
-    this.addedCart = this.wp
-      .addToCart({
-        product_id,
-        quantity: this.quantity
-      })
-      .subscribe();
+    this.wp.addToCart({
+      product_id,
+      quantity: this.quantity
+    });
   }
 
   changeQuantity(event: KeyboardEvent) {

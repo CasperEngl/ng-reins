@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { throttleTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -10,36 +10,19 @@ import { WordpressService } from '../wordpress.service';
   styleUrls: ['./cart-detail.component.scss']
 })
 export class CartDetailComponent implements OnInit {
-  cart$: Observable<any>;
-  cartTotals$: Observable<any>;
-
+  @Input() product: any;
+  price: number;
   quantity: number;
   quantityChangeSubscriber: Subscriber<any>;
-  private cart: any;
 
   constructor(private wp: WordpressService) { }
 
   ngOnInit() {
-    this.updateCart();
-    this.cart = this.wp.getCart().subscribe({
-      next: response => {
-        this.cart$ = response
+    this.wp.products.subscribe(products => {
+      const product = products.find(product => product.id === this.product.product_id);
 
-        console.log(this.cart$)
-      },
-      error: error => console.error(error),
+      this.price = product ? product.price : null;
     });
-  }
-
-  ngOnDestroy() {
-    this.cart.unsubscribe();
-  }
-
-  updateCart() {
-    this.wp.getCartTotals().subscribe({
-      next: response => this.cartTotals$ = response,
-      error: error => console.error(error),
-    })
   }
 
   changeQuantity(event: KeyboardEvent, cart_item_key: string) {
@@ -58,7 +41,7 @@ export class CartDetailComponent implements OnInit {
           this.wp.updateInCart({
             cart_item_key: cart_item_key,
             quantity: this.quantity
-          }).subscribe(() => this.updateCart());
+          });
         });
     }
 
