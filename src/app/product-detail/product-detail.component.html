@@ -11,7 +11,7 @@
         </figure>
       </div>
       <div class="col-sm-6">
-        <h4 [innerHTML]="product.price_html"></h4>
+        <h4>{{ product.price | currency:'DKK' }}</h4>
         <div [innerHTML]="product.description"></div>
         <div class="form-group row">
           <label for="quantity" class="col-auto col-form-label">Quantity</label>

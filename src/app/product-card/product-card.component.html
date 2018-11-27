@@ -1,0 +1,38 @@
+<article class="product-card">
+  <a
+    [routerLink]="['../product', product.id]"
+    class="product-card__link"
+  >
+    <figure class="product-card__frame">
+      <img
+        [src]="product.images[0].src"
+        [alt]="product.images[0].alt"
+        class="product-card__frame__img"
+      />
+      <div class="product-card__categories">
+        <ng-container *ngFor="let category of product.categories">
+          <span class="badge badge-pill badge-primary py-2 px-3 my-1 mr-1">
+            {{ category.name }}
+          </span>
+        </ng-container>
+      </div>
+    </figure>
+  </a>
+  <div class="product-card__info">
+    <header>
+      <a [routerLink]="['../product', product.id]" class="product-card__link">
+        <h3 class="h5">{{ product.name }}</h3>
+        <p class="m-0">{{ product.price | currency: "DKK" }}</p>
+      </a>
+    </header>
+    <section>
+      <button
+        class="btn btn-primary"
+        (click)="addToCart({ product_id: product.id })"
+        [@addedProduct]="animate ? 'added' : 'reset'"
+      >
+        {{ animate ? "Added to cart" : "Add to cart" }}
+      </button>
+    </section>
+  </div>
+</article>

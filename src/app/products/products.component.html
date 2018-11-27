@@ -1,20 +1,15 @@
 <section class="jumbotron">
-  <h1 class="display-1 text-uppercase text-center">Products</h1>
+  <h1 class="display-1 text-uppercase text-white text-center">Products</h1>
 </section>
 <main class="container my-5">
+  <section class="form-group row align-items-center m-0 mb-5">
+    <input id="query" [(ngModel)]="query" type="text" placeholder="Search ..." class="form-control border-dark border p-5 col">
+  </section>
   <section class="row">
-    <ng-container *ngFor="let product of products$">
-        <a [routerLink]="['../product', product.id]" routerLinkActive="active" class="product-card__link col-md-4 col-sm-6">
-          <article class="product-card">
-            <figure class="product-card__frame">
-              <img [src]="product.images[0].src" [alt]="product.images[0].alt" class="product-card__frame__img">
-            </figure>
-            <header class="product-card__info">
-              <h2>{{ product.name }}</h2>
-              <h5>{{ product.date_created | date }}</h5>
-            </header>
-          </article>
-        </a>
+    <ng-container *ngFor="let product of products | search:'name,price,slug':query">
+      <div class="col-md-4 col-sm-6">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
     </ng-container>
   </section>
 </main>

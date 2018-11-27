@@ -1,68 +1,12 @@
-$product-card-transition: all 350ms ease-in-out;
-$product-card-border-radius: .25rem;
-$product-card-box-shadow: 0 0 1.25rem 0 rgba(black, .1);
-$product-card-hover-box-shadow: 0 0 1.5rem 0 rgba(black, .15);
-$product-card-frame-border-radius: $product-card-border-radius $product-card-border-radius 0 0;
+.jumbotron {
+  background: url('/wp-content/uploads/2018/11/jakub-kapusnak-296131-unsplash.jpg') no-repeat center center;
+  background-size: cover;
+  filter: brightness(110%) saturate(120%);
+}
 
-.product-card {
-  margin: 1rem 0;
-  border-radius: $product-card-border-radius;
-  box-shadow: $product-card-box-shadow;
-  transition: $product-card-transition;
-
-  &:hover {
-    box-shadow: $product-card-hover-box-shadow;
-  }
-
-  &--lg {
-    .post-card__frame {
-      height: 300px;
-    }
-  }
-
-  &--sm {
-    .post-card__frame {
-      height: 100px;
-    }
-
-    .post-card__info {
-      padding: 1rem;
-    }
-  }
-
-  &__link:hover {
-    text-decoration: none;
-  }
-
-  &__info {
-    padding: 1rem;
-    width: 100%;
-    z-index: 9999;
-  }
-
-  &__frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    height: 200px;
-    border-radius: $product-card-frame-border-radius;
-    filter: brightness(110%);
-
-    &:hover {
-      .post-card__frame__img {
-        opacity: .75;
-        transform: scale(1.05);
-      }
-    }
-
-    &__img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      transition: $product-card-transition;
-    }
-  }
+#query {
+  border: none;
+  box-shadow: none;
+  border: 1px solid #222;
+  border-radius: 0;
 }
