@@ -1,5 +1,5 @@
 {
-  "name": "minimal",
+  "name": "reins",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -39,7 +39,9 @@
     "ngx-wooapi": "^5.0.12",
     "node-oauth-1.0a": "^3.0.0",
     "oauth-1.0a": "^2.2.5",
+    "obj-traverse": "^1.0.0",
     "rxjs": "~6.3.3",
+    "traverse": "^0.6.6",
     "woocommerce-api": "^1.4.2",
     "zone.js": "~0.8.26"
   },
