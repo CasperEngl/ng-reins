@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
 
@@ -24,6 +23,12 @@ export class WordpressService {
 
   private productsSource = new BehaviorSubject<any[]>([]);
   products = this.productsSource.asObservable();
+
+  private cartSource = new BehaviorSubject<any[]>([]);
+  cart = this.cartSource.asObservable();
+
+  private cartTotalsSource = new BehaviorSubject<any[]>([]);
+  cartTotals = this.cartTotalsSource.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -72,18 +77,24 @@ export class WordpressService {
       url: `${window.location.origin}/wp-json/wc/v2/cart/add`,
     }
 
-    return this.http.post<ProductData>(request.url, product_data)
-      .pipe(
-        catchError(error => of(`Could not add to cart`, error))
-      );
+    const addedProduct = this.http.post<ProductData>(request.url, product_data);
+
+    addedProduct.toPromise().then(() => this.getCart());
+
+    return addedProduct;
   }
 
   getCart(): Observable<any> {
     const request = {
       url: `${window.location.origin}/wp-json/wc/v2/cart`,
     }
-
-    return this.http.get<any>(request.url);
+    
+    this.http.get<any>(request.url).subscribe(response => {
+      this.cartSource.next(response);
+      this.getCartTotals();
+    });
+    
+    return this.cart;
   }
 
   clearCart(): Observable<any> {
@@ -119,7 +130,9 @@ export class WordpressService {
       url: `${window.location.origin}/wp-json/wc/v2/cart/totals`,
     }
 
-    return this.http.get<any>(request.url);
+    this.http.get<any>(request.url).subscribe(response => this.cartTotalsSource.next(response));
+
+    return this.cartTotals;
   }
 
   deleteFromCart(cart_item_key: string): Observable<any> {
@@ -130,9 +143,13 @@ export class WordpressService {
       }
     }
 
-    return this.http.request<any>('delete', request.url, {
+    const deletedProduct = this.http.request<any>('delete', request.url, {
       body: request.data,
     });
+
+    deletedProduct.toPromise().then(() => this.getCart());
+
+    return deletedProduct;
   }
 
   restoreToCart(cart_item_key: string): Observable<any> {
@@ -153,9 +170,10 @@ export class WordpressService {
       url: `${window.location.origin}/wp-json/wc/v2/cart/cart-item`,
     }
 
-    return this.http.post<CartItem>(request.url, product_data)
-      .pipe(
-        catchError(error => of(`Could update item in cart`, error))
-      );
+    const updatedCart = this.http.post<CartItem>(request.url, product_data);
+
+    updatedCart.toPromise().then(() => this.getCart());
+
+    return updatedCart;
   }
 }
