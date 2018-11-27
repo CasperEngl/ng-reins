@@ -1,8 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FlexModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { KeysPipe } from './keys.pipe';
 import { CartComponent } from './cart/cart.component';
+import { SearchPipe } from './search.pipe';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { CartComponent } from './cart/cart.component';
     CartDetailComponent,
     KeysPipe,
     CartComponent,
+    SearchPipe,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import { CartComponent } from './cart/cart.component';
     FlexModule,
     HttpClientModule,
     NgbModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
