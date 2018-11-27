@@ -4,7 +4,7 @@
       <app-cart-detail [product]="cart[product]"></app-cart-detail>
     </ng-container>
   </ul>
-  <div class="row justify-content-end m-0 mt-3" *ngIf="cartTotals">
+  <div class="row justify-content-end m-0 mt-3" *ngIf="cartTotals.total else noCart">
     <table class="table col-sm-6">
       <tbody>
         <tr class="bg-light">
@@ -22,4 +22,8 @@
       </tbody>
     </table>
   </div>
+  <ng-template #noCart>
+    <h2>No items in cart.</h2>
+    <p>Go to <a [routerLink]="['../', 'products']">shop</a></p>
+  </ng-template>
 </div>
