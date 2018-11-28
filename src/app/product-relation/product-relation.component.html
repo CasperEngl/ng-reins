@@ -2,6 +2,7 @@
   *ngIf="product$ as product"
   [routerLink]="['../', product.id]"
   class="product__link"
+  (click)="pageTransition.play()"
 >
   <article class="product">
     <header>

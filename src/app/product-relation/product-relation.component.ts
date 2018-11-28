@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { WordpressService } from "../wordpress.service";
+import { PageTransitionService } from "../page-transition.service";
 
 @Component({
   selector: "app-product-relation",
@@ -15,7 +16,7 @@ export class ProductRelationComponent implements OnInit, OnDestroy {
 
   private productSubscription: any;
 
-  constructor(private wp: WordpressService) {}
+  constructor(private wp: WordpressService, private pageTransition: PageTransitionService) {}
 
   ngOnInit() {
     this.productSubscription = this.wp.products.subscribe(response =>

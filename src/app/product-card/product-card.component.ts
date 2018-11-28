@@ -9,6 +9,7 @@ import {
 import { Observable, timer } from 'rxjs';
 
 import { WordpressService, ProductData } from '../wordpress.service';
+import { PageTransitionService } from '../page-transition.service';
 
 @Component({
   selector: 'app-product-card',
@@ -41,7 +42,7 @@ export class ProductCardComponent implements OnInit {
 
   timer: Observable<number>;
 
-  constructor(private wp: WordpressService) { }
+  constructor(private wp: WordpressService, private pageTransition: PageTransitionService) { }
 
   ngOnInit() {
     this.timer = timer(this.animationDuration);

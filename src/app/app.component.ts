@@ -1,61 +1,47 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 
 import { WordpressService } from './wordpress.service';
+import { PageTransitionService } from './page-transition.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('pageTransition', [
+      state('start', style({
+        opacity: '1',
+        display: 'block',
+      })),
+      state('end', style({
+        opacity: '0',
+        display: 'none',
+      })),
+      transition('start => end', [
+        animate('350ms ease')
+      ]),
+      transition('end => start', [
+        animate('350ms ease')
+      ]),
+    ]),
+  ]
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
   public lottieConfig: Object;
-  private transition: any;
-  private animationSpeed: number = .5;
 
-  constructor(private wp: WordpressService) {
-    this.lottieConfig = {
-      path: '/wp-content/uploads/page2.json',
-      renderer: 'svg',
-      autoplay: false,
-      loop: false,
-      rendererSettings: {
-        progressiveLoad: true,
-        hideOnTransparent: true,
-        className: 'page-transition',
-      },
-    };
-  }
+  constructor(private wp: WordpressService, private pageTransition: PageTransitionService) { }
 
   ngOnInit() {
     this.wp.getProducts();
     this.wp.getCart();
-  }
-
-  ngAfterViewInit() {
-    this.play();
-  }
-
-  handleAnimation(anim: any) {
-    this.transition = anim;
-    this.transition.setSpeed(this.animationSpeed)
-  }
-
-  stop() {
-    this.transition.stop();
-  }
-
-  play() {
-    this.transition.play();
-  }
-
-  pause() {
-    this.transition.pause();
-  }
-
-  setSpeed(speed: number) {
-    this.animationSpeed = speed;
-    this.transition.setSpeed(speed);
   }
   
 }

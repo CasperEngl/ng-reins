@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageTransitionService } from '../page-transition.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   navbarCollapsed = true;
 
-  constructor() { }
+  constructor(private pageTransition: PageTransitionService) { }
 
   ngOnInit() {
   }

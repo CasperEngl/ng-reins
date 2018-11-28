@@ -1,8 +1,5 @@
 <article class="product-card">
-  <a
-    [routerLink]="['../product', product.id]"
-    class="product-card__link"
-  >
+  <a [routerLink]="['../product', product.id]" class="product-card__link" (click)="pageTransition.play()">
     <figure class="product-card__frame">
       <img
         [src]="product.images[0].src"
@@ -20,7 +17,7 @@
   </a>
   <div class="product-card__info">
     <header>
-      <a [routerLink]="['../product', product.id]" class="product-card__link">
+      <a [routerLink]="['../product', product.id]" class="product-card__link" (click)="pageTransition.play()">
         <h3 class="h5">{{ product.name }}</h3>
         <p class="m-0">{{ product.price | currency: "DKK" }}</p>
       </a>

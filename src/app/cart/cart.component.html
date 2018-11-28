@@ -15,7 +15,7 @@
           <td>Shipping total</td>
           <td>{{ cartTotals.shipping_total | currency:'DKK' }}</td>
         </tr>
-        <tr>
+        <tr class="bg-white">
           <td>Total</td>
           <td>{{ cartTotals.total | currency:'DKK' }}</td>
         </tr>
@@ -24,6 +24,6 @@
   </div>
   <ng-template #noCart>
     <h2>No items in cart.</h2>
-    <p>Go to <a [routerLink]="['../', 'products']">shop</a></p>
+    <p>Go to <a [routerLink]="['../', 'products']" (click)="pageTransition.play()">shop</a></p>
   </ng-template>
 </div>

@@ -5,9 +5,11 @@ $product-card-hover-box-shadow: 0 0 1.5rem 0 rgba(black, .15);
 $product-card-frame-border-radius: $product-card-border-radius $product-card-border-radius 0 0;
 $product-card-spacing: 1rem;
 $product-card-link-text-color: #222;
+$product-card-bg: white;
 
 .product-card {
   margin: 0 0 $product-card-spacing;
+  background: $product-card-bg;
   border-radius: $product-card-border-radius;
   box-shadow: $product-card-box-shadow;
   transition: $product-card-transition;

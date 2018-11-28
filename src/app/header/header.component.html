@@ -7,13 +7,13 @@
   <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="navbarCollapsed">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        <a class="nav-link" routerLink="/">Home</a>
+        <a class="nav-link" routerLink="/" (click)="pageTransition.play()">Home</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/products">Products</a>
+        <a class="nav-link" routerLink="/products" (click)="pageTransition.play()">Products</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/cart">Cart</a>
+        <a class="nav-link" routerLink="/cart" (click)="pageTransition.play()">Cart</a>
       </li>
     </ul>
   </div>

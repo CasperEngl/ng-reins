@@ -1,9 +1,10 @@
 <div class="page-wrapper">
   <app-header></app-header>
-  <!-- <lottie-animation-view
-    [options]="lottieConfig"
-    (animCreated)="handleAnimation($event)"
-  ></lottie-animation-view> -->
+  <lottie-animation-view
+    [options]="pageTransition.lottieConfig"
+    (animCreated)="pageTransition.handleAnimation($event)"
+    [@addedProduct]="pageTransition.running ? 'start' : 'end'"
+  ></lottie-animation-view>
   <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
