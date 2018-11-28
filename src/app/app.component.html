@@ -3,7 +3,7 @@
   <lottie-animation-view
     [options]="pageTransition.lottieConfig"
     (animCreated)="pageTransition.handleAnimation($event)"
-    [@addedProduct]="pageTransition.running ? 'start' : 'end'"
+    [@pageTransition]="pageTransition.running ? 'start' : 'end'"
   ></lottie-animation-view>
   <router-outlet></router-outlet>
 </div>
