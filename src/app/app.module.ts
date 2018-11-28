@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LottieAnimationViewModule } from 'ng-lottie';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,8 +43,9 @@ import { ProductCardComponent } from './product-card/product-card.component';
     BrowserAnimationsModule,
     FlexModule,
     HttpClientModule,
-    NgbModule.forRoot(),
     FormsModule,
+    NgbModule.forRoot(),
+    LottieAnimationViewModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

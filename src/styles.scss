@@ -38,3 +38,15 @@ h1, h2, h3, h4, h5, h6 {
 .display-4 {
   font-weight: 700 !important;
 }
+
+.page-transition {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh !important;
+  width: auto !important;
+  pointer-events: none;
+}
