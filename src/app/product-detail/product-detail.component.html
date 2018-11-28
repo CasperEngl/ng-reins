@@ -1,37 +1,38 @@
-<div class="container my-5">
-  <article *ngIf="product$ as product">
-    <header class="mb-3 d-flex flex-column align-items-center">
-      <h1>{{ product.name }}</h1>
-      <p class="h4 text-muted">{{ product.date_created | date }}</p>
-    </header>
-    <section class="row">
-      <div class="col-sm-6">
+<main class="container my-5">
+  <section *ngIf="product$ as product">
+    <div class="row">
+      <article class="col-sm-6">
         <figure class="product__image">
-          <img [src]="product.images[0].shop_single" [alt]="product.images[0].alt" />
+          <!-- <img [src]="product.images[0].shop_single" [alt]="product.images[0].alt" /> -->
+          <ngb-carousel *ngIf="product.images">
+            <ng-template ngbSlide *ngFor="let image of product.images">
+              <img [src]="image.shop_single" alt="image.alt">
+            </ng-template>
+          </ngb-carousel>
         </figure>
-      </div>
-      <div class="col-sm-6">
-        <h4>{{ product.price | currency:'DKK' }}</h4>
-        <div [innerHTML]="product.description"></div>
-        <div class="form-group row">
-          <label for="quantity" class="col-auto col-form-label">Quantity</label>
-          <div class="col">
-            <input class="form-control" type="number" value="1" id="quantity" (keyup)="changeQuantity($event)">
+      </article>
+      <article class="col-sm-6">
+        <header class="mb-5">
+          <h1>{{ product.name }}</h1>
+        </header>
+        <section>
+          <h4>{{ product.price | currency:'DKK' }}</h4>
+          <div [innerHTML]="product.description"></div>
+        </section>
+        <footer>
+          <div class="form-group row">
+            <label for="quantity" class="col-auto col-form-label">Quantity</label>
+            <div class="col">
+              <input class="form-control" type="number" value="1" id="quantity" (keyup)="changeQuantity($event)">
+            </div>
           </div>
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-primary" (click)="addToCart({ product_id: product.id })">Add to cart</button>
-        </div>
-      </div>
-      <div class="col-12 my-5">
-        <ngb-carousel *ngIf="product.images[1]">
-          <ng-template ngbSlide *ngFor="let image of product.images | slice:1">
-            <img [src]="image.shop_single" alt="image.alt">
-          </ng-template>
-        </ngb-carousel>
-      </div>
-    </section>
-    <footer class="my-5">
+          <div class="btn-group">
+            <button class="btn btn-primary" (click)="addToCart({ product_id: product.id })">Add to cart</button>
+          </div>
+        </footer>
+      </article>
+    </div>
+    <footer class="my-5" *ngIf="product.related_ids.length">
       <h2>Related Products</h2>
       <div class="row">
         <div class="col-4" *ngFor="let id of product.related_ids">
@@ -39,5 +40,5 @@
         </div>
       </div>
     </footer>
-  </article>
-</div>
+  </section>
+</main>
