@@ -30,6 +30,7 @@
         class="btn btn-primary"
         (click)="addToCart({ product_id: product.id })"
         [@addedProduct]="animate ? 'added' : 'reset'"
+        [disabled]="animate"
       >
         {{ animate ? "Added to cart" : "Add to cart" }}
       </button>
