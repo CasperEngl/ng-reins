@@ -11,11 +11,15 @@
 
 ngb-carousel {
   overflow: hidden;
-  height: 300px;
+  height: 500px;
 
-  .carousel-item.active {
-    display: flex;
-    align-items: center;
+  .carousel-item {
+    height: 100%;
+
+    &.active {
+      display: flex;
+      align-items: center;
+    }
   }
 
   img {
