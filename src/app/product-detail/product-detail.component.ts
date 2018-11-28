@@ -20,10 +20,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = Number(params['id']);
-
       this.productSubscription = this.wp.products.subscribe(
-        response => this.product$ = response.find(product => product.id === this.id)
+        response => this.product$ = response.find(product => product.id === Number(params['id']))
       );
     });
   }
