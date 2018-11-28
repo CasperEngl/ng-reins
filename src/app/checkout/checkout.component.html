@@ -1,0 +1,48 @@
+<label for="card-element">Card</label>
+<div id="card-element"></div>
+<button onclick="submitForm()">Submit</button>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+// add your publishable key https://stripe.com/docs/stripe-js/reference#including-stripejs
+var stripe = Stripe('pk_test_XXXXXXXXXXXXXXXX');
+// create the card inputs https://stripe.com/docs/stripe-js/reference#stripe-elements
+var elements = stripe.elements();
+var card = elements.create('card');
+card.mount('#card-element');
+// get a token when the form is submitted https://stripe.com/docs/stripe-js/reference#stripe-create-token
+function submitForm() {
+	// TODO: Create the order and get back the order ID http://woocommerce.github.io/woocommerce-rest-api-docs/#create-an-orderTODO: create the order and get back the order ID
+	var order_id = 1832;
+	stripe.createToken(card).then(function(result) {
+		console.log(result)
+		if( result.token ) {
+	  		sendTokenToServer( result.token.id, order_id );
+		} else {
+			console.log( "There was a problem", result );
+		}
+	});
+}
+function sendTokenToServer( token, order_id ) {
+	var url = `${window.location.origin}/wp-json/wc/v2/stripe_payment`;
+	var formData = new FormData();
+	formData.append("order_id", order_id);
+	formData.append("payment_token", token);
+	formData.append("payment_method", 'stripe');
+	var request = new XMLHttpRequest();
+	request.open("POST", url);
+	request.send(formData);
+	request.onload = (e) => {
+		if (request.readyState === 4) {
+		  if (request.status === 200) {
+		  	console.log(request)
+		    alert( request.responseText );
+		  } else {
+		  	console.log("Error", request)
+		    alert( request.responseText );
+		  }
+		}
+	};
+}
+</script>

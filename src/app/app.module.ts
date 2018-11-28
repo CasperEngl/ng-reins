@@ -21,6 +21,7 @@ import { KeysPipe } from './keys.pipe';
 import { CartComponent } from './cart/cart.component';
 import { SearchPipe } from './search.pipe';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     CartComponent,
     SearchPipe,
     ProductCardComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
