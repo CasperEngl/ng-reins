@@ -28,9 +28,10 @@ export class PageTransitionService {
   }
 
   handleAnimation(anim: any) {
-    console.log(anim);
     this.transition = anim;
     this.transition.setSpeed(this.animationSpeed)
+
+    this.transition.addEventListener('complete', () => this.running = false);
   }
 
   stop(): Observable<boolean> {
