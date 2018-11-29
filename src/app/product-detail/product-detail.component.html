@@ -3,10 +3,12 @@
     <div class="row">
       <article class="col-sm-6">
         <figure class="product__image">
-          <!-- <img [src]="product.images[0].shop_single" [alt]="product.images[0].alt" /> -->
+          <!--
+            <img [src]="product.images[0].shop_single" [alt]="product.images[0].alt" />
+          -->
           <ngb-carousel *ngIf="product.images">
             <ng-template ngbSlide *ngFor="let image of product.images">
-              <img [src]="image.shop_single" alt="image.alt">
+              <img [src]="image.shop_single" alt="image.alt" />
             </ng-template>
           </ngb-carousel>
         </figure>
@@ -16,18 +18,33 @@
           <h1>{{ product.name }}</h1>
         </header>
         <section>
-          <h4>{{ product.price | currency:'DKK' }}</h4>
+          <h4>{{ product.price | currency: "DKK" }}</h4>
           <div [innerHTML]="product.description"></div>
         </section>
         <footer>
           <div class="form-group row">
-            <label for="quantity" class="col-auto col-form-label">Quantity</label>
+            <label for="quantity" class="col-auto col-form-label"
+              >Quantity</label
+            >
             <div class="col">
-              <input class="form-control" type="number" value="1" id="quantity" (keyup)="changeQuantity($event)">
+              <input
+                class="form-control"
+                type="number"
+                value="1"
+                id="quantity"
+                (keyup)="changeQuantity($event)"
+              />
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary" (click)="addToCart({ product_id: product.id })">Add to cart</button>
+            <button
+              class="btn btn-primary"
+              (click)="addToCart({ product_id: product.id })"
+              [@addProduct]="animate ? 'start' : 'end'"
+              [disabled]="animate"
+            >
+              {{ animate ? 'Added to cart' : 'Add to cart' }}
+            </button>
           </div>
         </footer>
       </article>
