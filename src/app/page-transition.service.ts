@@ -15,7 +15,7 @@ export class PageTransitionService {
 
   constructor(private wp: WordpressService) {
     this.lottieConfig = {
-      path: '/wp-content/uploads/page60.json',
+      // path: '/wp-content/uploads/page60.json',
       renderer: 'svg',
       autoplay: false,
       loop: false,
