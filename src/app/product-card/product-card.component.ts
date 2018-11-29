@@ -1,37 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
 import { Observable, timer } from 'rxjs';
 
 import { WordpressService, ProductData } from '../wordpress.service';
 import { PageTransitionService } from '../page-transition.service';
+import { addProduct } from '../animations';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
   animations: [
-    trigger('addedProduct', [
-      state('added', style({
-        backgroundColor: '#28a745',
-        borderColor: '#28a745',
-      })),
-      state('reset', style({
-        backgroundColor: '#007bff',
-        borderColor: '#007bff',
-      })),
-      transition('added => reset', [
-        animate('.35s')
-      ]),
-      transition('reset => added', [
-        animate('.35s')
-      ]),
-    ]),
+    addProduct,
   ],
 })
 export class ProductCardComponent implements OnInit {
