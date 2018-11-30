@@ -10,12 +10,12 @@ export class PageTransitionService {
 
   public lottieConfig: Object;
   transition: any;
-  animationSpeed: number = 0.25;
+  animationSpeed: number = 1;
   running: boolean = false;
 
   constructor(private wp: WordpressService) {
     this.lottieConfig = {
-      // path: '/wp-content/uploads/page60.json',
+      // path: '/wp-content/uploads/page.json',
       renderer: 'svg',
       autoplay: false,
       loop: false,
