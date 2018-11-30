@@ -4,13 +4,13 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Injectable()
-export class TransitionDelayResolve implements Resolve<Observable<any>> {
+export class TransitionDelayResolve implements Resolve<Observable<boolean>> {
 
   constructor() { }
 
-  resolve(): Observable<any> {
-    return of('delayed navigation').pipe(
-      delay(750)
+  resolve(): Observable<boolean> {
+    return of(true).pipe(
+      delay(500)
     );
   }
 }
