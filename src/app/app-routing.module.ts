@@ -5,28 +5,23 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
-import { TransitionDelayResolve } from './transition-delay.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    resolve: [TransitionDelayResolve],
   },
   {
     path: 'products',
     component: ProductsComponent,
-    resolve: [TransitionDelayResolve],
   },
   {
     path: 'product/:id',
     component: ProductDetailComponent,
-    resolve: [TransitionDelayResolve],
   },
   {
     path: 'cart',
     component: CartComponent,
-    resolve: [TransitionDelayResolve],
   },
 ];
 
@@ -35,6 +30,5 @@ const routes: Routes = [
     // enableTracing: true
   })],
   exports: [RouterModule],
-  providers: [TransitionDelayResolve],
 })
 export class AppRoutingModule { }
