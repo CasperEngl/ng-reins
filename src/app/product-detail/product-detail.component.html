@@ -3,14 +3,12 @@
     <div class="row">
       <article class="col-sm-6">
         <figure class="product__image">
-          <!--
-            <img [src]="product.images[0].shop_single" [alt]="product.images[0].alt" />
-          -->
-          <ngb-carousel *ngIf="product.images">
+          <img [src]="product.images[0].shop_single" [alt]="product.images[0].alt" />
+          <!-- <ngb-carousel *ngIf="product.images">
             <ng-template ngbSlide *ngFor="let image of product.images">
               <img [src]="image.shop_single" alt="image.alt" />
             </ng-template>
-          </ngb-carousel>
+          </ngb-carousel> -->
         </figure>
       </article>
       <article class="col-sm-6">
