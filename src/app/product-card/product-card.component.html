@@ -15,17 +15,17 @@
       </div>
     </figure>
   </a>
-  <div class="product-card__info">
-    <header>
+  <div class="product-card__info row justify-content-center">
+    <header class="col-lg-6 my-1">
       <a [routerLink]="['../product', product.id]" class="product-card__link" (click)="pageTransition.play()">
         <h3 class="h5">{{ product.name }}</h3>
         <p class="m-0">{{ product.price | currency: "DKK" }}</p>
       </a>
     </header>
-    <section>
+    <section class="col-lg-6 my-1">
       <button
         class="btn btn-primary"
-        (click)="addToCart({ product_id: product.id })"
+        (click)="addToCart({ product_id: product.id, quantity: 1 })"
         [@addProduct]="animate ? 'start' : 'end'"
         [disabled]="animate"
       >
