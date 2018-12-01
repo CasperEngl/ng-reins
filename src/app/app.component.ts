@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   public lottieConfig: Object;
 
-  constructor(private wp: WordpressService, private pageTransition: PageTransitionService) { }
+  constructor(private wp: WordpressService, public pageTransition: PageTransitionService) { }
 
   ngOnInit() {
     this.wp.getProducts();

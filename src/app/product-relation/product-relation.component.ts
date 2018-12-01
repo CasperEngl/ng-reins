@@ -16,7 +16,7 @@ export class ProductRelationComponent implements OnInit, OnDestroy {
 
   private productSubscription: any;
 
-  constructor(private wp: WordpressService, private pageTransition: PageTransitionService) {}
+  constructor(private wp: WordpressService, public pageTransition: PageTransitionService) {}
 
   ngOnInit() {
     this.productSubscription = this.wp.products.subscribe(response =>

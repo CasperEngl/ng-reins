@@ -21,7 +21,7 @@ export class ProductCardComponent implements OnInit {
 
   timer: Observable<number>;
 
-  constructor(private wp: WordpressService, private pageTransition: PageTransitionService) { }
+  constructor(private wp: WordpressService, public pageTransition: PageTransitionService) { }
 
   ngOnInit() {
     this.timer = timer(this.animationDuration);

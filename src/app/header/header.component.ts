@@ -9,7 +9,7 @@ import { PageTransitionService } from '../page-transition.service';
 export class HeaderComponent implements OnInit {
   navbarCollapsed = true;
 
-  constructor(private pageTransition: PageTransitionService) { }
+  constructor(public pageTransition: PageTransitionService) { }
 
   ngOnInit() {
   }
