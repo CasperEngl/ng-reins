@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
   cart: any;
   cartTotals: any;
 
-  constructor(private wp: WordpressService, private pageTransition: PageTransitionService) { }
+  constructor(private wp: WordpressService, public pageTransition: PageTransitionService) { }
 
   ngOnInit() {
     this.wp.cart.subscribe(response => this.cart = response)
