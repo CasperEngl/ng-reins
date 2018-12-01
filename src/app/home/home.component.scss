@@ -1,0 +1,33 @@
+.hero {
+  position: relative;
+  min-height: 37.5rem;
+  display: flex;
+  align-items: center;
+  background: url('/wp-content/uploads/2018/12/fruit-hero.jpg') no-repeat center center;
+  background-size: cover;
+
+  &__dots {
+    width: 3rem;
+    height: 3rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -4rem;
+      left: -3rem;
+      height: 10rem;
+      width: 10rem;
+      background: url('/wp-content/uploads/shapes/dots.svg') no-repeat center center;
+      opacity: .05;
+    }
+  }
+
+  &__title {
+    max-width: 20ch;
+    font-family: 'Tiempos Headline', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  &__sub {
+    max-width: 65ch;
+  }
+}
