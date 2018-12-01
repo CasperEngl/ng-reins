@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FlexModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +21,7 @@ import { CartComponent } from './cart/cart.component';
 import { SearchPipe } from './search.pipe';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { FeaturedPipe } from './featured.pipe';
 
 @NgModule({
   declarations: [
@@ -38,12 +38,12 @@ import { CheckoutComponent } from './checkout/checkout.component';
     SearchPipe,
     ProductCardComponent,
     CheckoutComponent,
+    FeaturedPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FlexModule,
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
