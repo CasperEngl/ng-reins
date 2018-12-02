@@ -9,18 +9,29 @@ import { PageTransition } from './animations';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    PageTransition(),
-  ]
+    PageTransition({
+      easing: '350ms ease-in-out',
+      start: {
+        display: 'block',
+        opacity: '1',
+      },
+      end: {
+        display: 'none',
+        opacity: '0',
+      },
+    }),
+  ],
 })
 export class AppComponent implements OnInit {
-
   public lottieConfig: Object;
 
-  constructor(private wp: WordpressService, public pageTransition: PageTransitionService) { }
+  constructor(
+    private wp: WordpressService,
+    public pageTransition: PageTransitionService,
+  ) {}
 
   ngOnInit() {
     this.wp.getProducts();
     this.wp.getCart();
   }
-  
 }
