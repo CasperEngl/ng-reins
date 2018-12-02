@@ -4,40 +4,94 @@ import {
   style,
   transition,
   animate,
+  query,
+  animateChild,
 } from '@angular/animations';
 
-export function PageTransition() {
+import {
+  IAddProduct,
+  INavBackground,
+  INavbar,
+  IPageTransition,
+} from './animations.d';
+
+export function PageTransition(options: IPageTransition) {
   return trigger('pageTransition', [
-    state('start', style({
-      opacity: '1',
-      display: 'block',
-    })),
-    state('end', style({
-      opacity: '0',
-      display: 'none',
-    })),
-    transition('start => end', [
-      animate('350ms ease')
-    ]),
+    state(
+      'start',
+      style({
+        ...options.start,
+      }),
+    ),
+    state(
+      'end',
+      style({
+        ...options.end,
+      }),
+    ),
+    transition('start => end', [animate(options.easing)]),
+    transition('end => start', [animate(options.easing)]),
+  ]);
+}
+
+export function Navbar(options: INavbar) {
+  return trigger('navbar', [
+    state(
+      'start',
+      style({
+        ...options.start,
+      }),
+    ),
+    state(
+      'end',
+      style({
+        ...options.end,
+      }),
+    ),
+    transition('start => end', [animate(options.easing)]),
+    transition('end => start', [animate(options.easing)]),
+  ]);
+}
+
+export function NavBackground(options: INavBackground) {
+  return trigger('navBackground', [
+    state(
+      'start',
+      style({
+        ...options.start,
+      }),
+    ),
+    state(
+      'end',
+      style({
+        ...options.end,
+      }),
+    ),
+    transition('start => end', [animate(options.easing)]),
     transition('end => start', [
-      animate('350ms ease')
+      animate(options.easing),
+      query('@navbar', [animateChild()]),
     ]),
   ]);
 }
 
-export const addProduct = trigger('addProduct', [
-  state('start', style({
-    backgroundColor: '#28a745',
-    borderColor: '#28a745',
-  })),
-  state('end', style({
-    backgroundColor: '#007bff',
-    borderColor: '#007bff',
-  })),
-  transition('start => end', [
-    animate('350ms ease')
-  ]),
-  transition('end => start', [
-    animate('350ms ease')
-  ]),
-]);
+export function AddProduct(options: IAddProduct) {
+  return trigger('addProduct', [
+    state(
+      'start',
+      style({
+        backgroundColor: options.start.backgroundColor,
+        borderColor: options.start.borderColor,
+      }),
+    ),
+    state(
+      'end',
+      style({
+        backgroundColor: options.end.backgroundColor,
+        borderColor: options.end.borderColor,
+      }),
+    ),
+    transition('start => end', [animate(options.easing)]),
+    transition('end => start', [animate(options.easing)]),
+  ]);
+}
