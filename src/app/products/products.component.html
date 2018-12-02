@@ -1,15 +1,15 @@
-<section class="jumbotron">
-  <h1 class="display-1 text-uppercase text-white text-center">Products</h1>
-</section>
-<main class="container my-5">
-  <section class="m-0 mb-5">
+<main>
+  <section class="jumbotron">
+    <h1 class="text-uppercase text-center m-0">Products</h1>
+  </section>
+  <section class="container mb-5">
     <input id="query" [(ngModel)]="query" type="text" placeholder="Search ..." class="form-control border-dark border p-5 col">
   </section>
-  <section class="row">
-    <ng-container *ngFor="let product of products | search:'name,price,slug':query">
-      <div class="col-md-4 col-sm-6">
+  <section class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-6 my-2" *ngFor="let product of products | async | search:'name,price,slug':query">
         <app-product-card [product]="product"></app-product-card>
       </div>
-    </ng-container>
+    </div>
   </section>
 </main>
