@@ -3,12 +3,10 @@
     <div class="row">
       <article class="col-sm-6">
         <figure class="product__image">
-          <img [src]="product.images[0].shop_single" [alt]="product.images[0].alt" />
-          <!-- <ngb-carousel *ngIf="product.images">
-            <ng-template ngbSlide *ngFor="let image of product.images">
-              <img [src]="image.shop_single" alt="image.alt" />
-            </ng-template>
-          </ngb-carousel> -->
+          <img
+            [src]="product.images[0].shop_single"
+            [alt]="product.images[0].alt"
+          />
         </figure>
       </article>
       <article class="col-sm-6">
@@ -16,7 +14,7 @@
           <h1>{{ product.name }}</h1>
         </header>
         <section>
-          <h4>{{ product.price | currency: "DKK" }}</h4>
+          <h4>{{ product.price | currency: 'DKK' }}</h4>
           <div [innerHTML]="product.description"></div>
         </section>
         <footer>
