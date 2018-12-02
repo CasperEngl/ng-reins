@@ -9,11 +9,11 @@ import { WordpressService } from '../wordpress.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  products: Observable<any[]>;
+  products$: Observable<any[]>;
 
   constructor(private wp: WordpressService) { }
 
   ngOnInit() {
-    this.products = this.wp.products;
+    this.products$ = this.wp.products;
   }
 }

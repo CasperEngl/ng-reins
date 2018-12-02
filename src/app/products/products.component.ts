@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { WordpressService } from '../wordpress.service';
 
@@ -8,11 +9,12 @@ import { WordpressService } from '../wordpress.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  products: any[];
+  products$: Observable<any[]>;
+  query: string;
 
   constructor(private wp: WordpressService) { }
 
   ngOnInit() {
-    this.wp.products.subscribe(response => this.products = response);
+    this.products$ = this.wp.products;
   }
 }
