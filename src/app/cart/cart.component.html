@@ -1,29 +1,45 @@
-<div class="container my-5">
-  <ul class="list-group">
-    <ng-container *ngFor="let product of (cart | keys)">
-      <app-cart-detail [product]="cart[product]"></app-cart-detail>
-    </ng-container>
-  </ul>
-  <div class="row justify-content-end m-0 mt-3" *ngIf="cartTotals.total else noCart">
-    <table class="table col-sm-6 border">
-      <tbody>
-        <tr class="bg-light">
-          <td>Subtotal</td>
-          <td>{{ cartTotals.subtotal | currency:'DKK' }}</td>
-        </tr>
-        <tr class="bg-light">
-          <td>Shipping total</td>
-          <td>{{ cartTotals.shipping_total | currency:'DKK' }}</td>
-        </tr>
-        <tr class="bg-white">
-          <td>Total</td>
-          <td>{{ cartTotals.total | currency:'DKK' }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<main>
+  <ng-container *ngIf="cartTotals.total else noCart">
+    <section class="hero jumbotron">
+      <h1 class="hero__title">Cart</h1>
+    </section>
+    <div class="container mt-5">
+      <ul class="list-group">
+        <ng-container *ngFor="let product of (cart | keys)">
+          <app-cart-detail [product]="cart[product]"></app-cart-detail>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="container mt-3">
+      <div class="row m-0 justify-content-end">
+        <table class="table col-sm-6 border">
+          <tbody>
+            <tr class="bg-light">
+              <td>Subtotal</td>
+              <td>{{ cartTotals.subtotal | currency:'DKK' }}</td>
+            </tr>
+            <tr class="bg-light">
+              <td>Shipping total</td>
+              <td>{{ cartTotals.shipping_total | currency:'DKK' }}</td>
+            </tr>
+            <tr class="bg-white">
+              <td>Total</td>
+              <td>{{ cartTotals.total | currency:'DKK' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
   <ng-template #noCart>
-    <h2>No items in cart.</h2>
-    <p>Go to <a [routerLink]="['../', 'products']" (click)="pageTransition.play()">shop</a></p>
-  </ng-template>
-</div>
+    <section class="jumbotron m-0 d-flex align-items-center animated fadeIn delay-1s" style="height: calc(100vh - 56px);">
+      <div class="container">
+        <h1 class="hero__title">
+          Would you look at the time! <br>
+          No items in your cart, time to get something in there.
+        </h1>
+        <p class="h4 mt-4 text-center text-white">Go to <a class="text-white font-weight-bold text-uppercase" [routerLink]="['../', 'products']" (click)="pageTransition.play()"><u>shop</u></a></p>
+      </div>
+    </section>
+  </ng-template>      
+</main>
