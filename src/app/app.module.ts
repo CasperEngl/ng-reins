@@ -22,6 +22,7 @@ import { SearchPipe } from './search.pipe';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FeaturedPipe } from './featured.pipe';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FeaturedPipe } from './featured.pipe';
     ProductCardComponent,
     CheckoutComponent,
     FeaturedPipe,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,6 @@ import { FeaturedPipe } from './featured.pipe';
     LottieAnimationViewModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
