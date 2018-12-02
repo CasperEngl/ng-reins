@@ -1,17 +1,15 @@
-import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Observable, timer } from "rxjs";
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, timer, combineLatest } from 'rxjs';
 
-import { WordpressService, ProductData } from "../wordpress.service";
-import { addProduct } from "../animations";
+import { WordpressService, ProductData } from '../wordpress.service';
+import { addProduct } from '../animations';
 
 @Component({
-  selector: "app-product-detail",
-  templateUrl: "./product-detail.component.html",
-  styleUrls: ["./product-detail.component.scss"],
-  animations: [
-    addProduct
-  ],
+  selector: 'app-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.scss'],
+  animations: [addProduct]
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
   product$: Observable<any>;
@@ -30,11 +28,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.timer = timer(this.animationDuration);
 
-    this.route.params.subscribe(params => {
-      this.productSubscription = this.wp.products.subscribe(
-        response => this.product$ = response.find(product => product.id === Number(params['id']))
-      );
-    });
+    // Combine route params and wp products Observables
+    // Then find the product where the ID matches the route param ID
+    this.productSubscription = combineLatest(this.route.params, this.wp.products, (params, products) =>
+      products.find(product => product.id === Number(params.id))
+    ).subscribe(response => this.product$ = response);
   }
 
   ngOnDestroy() {
@@ -43,7 +41,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   addToCart({ product_id }: ProductData) {
     this.animate = !this.animate;
-    this.timer.subscribe(() => this.animate = !this.animate);
+    this.timer.subscribe(() => (this.animate = !this.animate));
 
     this.wp.addToCart({
       product_id,
