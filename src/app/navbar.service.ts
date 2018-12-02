@@ -8,15 +8,15 @@ export class NavbarService {
 
   constructor() { }
 
-  toggle() {
+  public toggle() {
     this.visible = !this.visible;
   }
 
-  hide() {
+  public hide() {
     this.visible = false;
   }
 
-  show() {
+  public show() {
     this.visible = true;
   }
 }
