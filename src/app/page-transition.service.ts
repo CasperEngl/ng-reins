@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 
 import { WordpressService } from './wordpress.service';
+import { NavbarService } from './navbar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class PageTransitionService {
   animationSpeed: number = 1;
   running: boolean = false;
 
-  constructor(private wp: WordpressService) {
+  constructor(private wp: WordpressService, private navbar: NavbarService) {
     this.lottieConfig = {
       // path: '/wp-content/uploads/page.json',
       renderer: 'svg',
@@ -46,7 +47,8 @@ export class PageTransitionService {
 
   play(): Observable<boolean> {
     const subject = new Subject<boolean>();
-
+    
+    this.navbar.hide();
     this.transition.goToAndPlay(0);
     this.running = true;
 
