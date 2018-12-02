@@ -3,20 +3,34 @@
 function reins_scripts() {
   $time_format = 'ymd-Gis';
 
-  $runtime_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/reins/runtime.js'));
-  $polyfills_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/reins/polyfills.js'));
-  $styles_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/reins/styles.js'));
-  $vendor_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/reins/vendor.js'));
-  $main_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/reins/main.js'));
+  $runtime_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/runtime.js'));
+  $polyfills_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/polyfills.js'));
+  $styles_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/styles.js'));
+  $vendor_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/vendor.js'));
+  $main_version  = date($time_format, filemtime(realpath(dirname(__FILE__)) . '/dist/main.js'));
 
-  wp_enqueue_script('reins-runtime', get_stylesheet_directory_uri() . '/dist/reins/runtime.js', array(), $runtime_version, true);
-  wp_enqueue_script('reins-polyfills', get_stylesheet_directory_uri() . '/dist/reins/polyfills.js', array(), $polyfills_version, true);
-  wp_enqueue_script('reins-styles', get_stylesheet_directory_uri() . '/dist/reins/styles.js', array(), $styles_version, true);
-  wp_enqueue_script('reins-vendor', get_stylesheet_directory_uri() . '/dist/reins/vendor.js', array(), $vendor_version, true);
-  wp_enqueue_script('reins-main', get_stylesheet_directory_uri() . '/dist/reins/main.js', array(), $main_version, true);
+  wp_enqueue_script('reins-runtime', get_stylesheet_directory_uri() . '/dist/runtime.js', array(), $runtime_version, true);
+  wp_enqueue_script('reins-polyfills', get_stylesheet_directory_uri() . '/dist/polyfills.js', array(), $polyfills_version, true);
+  wp_enqueue_script('reins-styles', get_stylesheet_directory_uri() . '/dist/styles.js', array(), $styles_version, true);
+  wp_enqueue_script('reins-vendor', get_stylesheet_directory_uri() . '/dist/vendor.js', array(), $vendor_version, true);
+  wp_enqueue_script('reins-main', get_stylesheet_directory_uri() . '/dist/main.js', array(), $main_version, true);
 
 }
 add_action('wp_enqueue_scripts', 'reins_scripts');
+
+// function reins_scripts() {
+//   $time_format = 'ymd-Gis';
+
+//   echo 'THE REALEST PATH: ' . realpath(dirname(__FILE__));
+  
+//   foreach (glob( dirname(__FILE__) . '/dist/*.js' ) as $file) {
+//     $version = date($time_format, filemtime($file));
+//     $name = array_shift(explode('.', basename($file)));
+    
+//     wp_enqueue_scripts('reins_' . $name, $file, $version, true);
+//   }
+// }
+// add_action('wp_enqueue_scripts', 'reins_scripts'); 
 
 function prepare_product_images($response, $post, $request) {
   global $_wp_additional_image_sizes;
