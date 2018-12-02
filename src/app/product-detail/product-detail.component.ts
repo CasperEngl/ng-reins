@@ -4,13 +4,25 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, timer, combineLatest } from 'rxjs';
 
 import { WordpressService, ProductData } from '../wordpress.service';
-import { addProduct } from '../animations';
+import { AddProduct } from '../animations';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],
-  animations: [addProduct]
+  animations: [
+    AddProduct({
+      easing: '350ms ease-in-out',
+      start: {
+        backgroundColor: '#28a745',
+        borderColor: '#28a745',
+      },
+      end: {
+        backgroundColor: '#007bff',
+        borderColor: '#007bff',
+      },
+    }),
+  ],
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
   product$: Observable<any>;
@@ -24,26 +36,32 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   timer: Observable<number>;
 
-  constructor(private wp: WordpressService, private route: ActivatedRoute, private titleService: Title) {}
+  constructor(
+    private wp: WordpressService,
+    private route: ActivatedRoute,
+    private titleService: Title,
+  ) {}
 
   ngOnInit() {
     this.timer = timer(this.animationDuration);
 
     // Combine route params and wp products Observables
     // Then find the product where the ID matches the route param ID
-    this.productSubscription = combineLatest(this.route.params, this.wp.products, (params, products) =>
-      products.find(product => product.id === Number(params.id))
+    this.productSubscription = combineLatest(
+      this.route.params,
+      this.wp.products,
+      (params, products) =>
+        products.find(product => product.id === Number(params.id)),
     ).subscribe(response => {
       this.product$ = response;
 
-      if (response)
-        this.titleService.setTitle(`${response.name} - Reins`)
+      if (response) this.titleService.setTitle(`${response.name} - Reins`);
     });
   }
 
   ngOnDestroy() {
     this.productSubscription.unsubscribe();
-    this.titleService.setTitle('Reins')
+    this.titleService.setTitle('Reins');
   }
 
   addToCart({ product_id }: ProductData) {
@@ -52,7 +70,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     this.wp.addToCart({
       product_id,
-      quantity: this.quantity
+      quantity: this.quantity,
     });
   }
 

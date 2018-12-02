@@ -4,10 +4,9 @@ import { Subject, Observable } from 'rxjs';
 import { WordpressService } from './wordpress.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PageTransitionService {
-
   public lottieConfig: Object;
   transition: any;
   animationSpeed: number = 1;
@@ -29,9 +28,9 @@ export class PageTransitionService {
 
   handleAnimation(anim: any) {
     this.transition = anim;
-    this.transition.setSpeed(this.animationSpeed)
+    this.transition.setSpeed(this.animationSpeed);
 
-    this.transition.addEventListener('complete', () => this.running = false);
+    this.transition.addEventListener('complete', () => (this.running = false));
   }
 
   stop(): Observable<boolean> {

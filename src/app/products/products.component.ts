@@ -7,13 +7,13 @@ import { WordpressService } from '../wordpress.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   products$: Observable<any[]>;
   query: string;
 
-  constructor(private wp: WordpressService, private titleService: Title) { }
+  constructor(private wp: WordpressService, private titleService: Title) {}
 
   ngOnInit() {
     this.products$ = this.wp.products;

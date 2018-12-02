@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy, Input } from "@angular/core";
-import { Observable } from "rxjs";
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { WordpressService } from "../wordpress.service";
-import { PageTransitionService } from "../page-transition.service";
+import { WordpressService } from '../wordpress.service';
+import { PageTransitionService } from '../page-transition.service';
 
 @Component({
-  selector: "app-product-relation",
-  templateUrl: "./product-relation.component.html",
-  styleUrls: ["./product-relation.component.scss"]
+  selector: 'app-product-relation',
+  templateUrl: './product-relation.component.html',
+  styleUrls: ['./product-relation.component.scss']
 })
 export class ProductRelationComponent implements OnInit, OnDestroy {
   product$: Observable<any>;
@@ -16,11 +16,15 @@ export class ProductRelationComponent implements OnInit, OnDestroy {
 
   private productSubscription: any;
 
-  constructor(private wp: WordpressService, public pageTransition: PageTransitionService) {}
+  constructor(
+    private wp: WordpressService,
+    public pageTransition: PageTransitionService
+  ) {}
 
   ngOnInit() {
-    this.productSubscription = this.wp.products.subscribe(response =>
-      this.product$ = response.find(product => product.id === this.id)
+    this.productSubscription = this.wp.products.subscribe(
+      response =>
+        (this.product$ = response.find(product => product.id === this.id))
     );
   }
 

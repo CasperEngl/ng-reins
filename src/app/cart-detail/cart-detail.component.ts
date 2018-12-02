@@ -15,11 +15,13 @@ export class CartDetailComponent implements OnInit {
   quantity: number;
   quantityChangeSubscriber: Subscriber<any>;
 
-  constructor(private wp: WordpressService) { }
+  constructor(private wp: WordpressService) {}
 
   ngOnInit() {
     this.wp.products.subscribe(products => {
-      const product = products.find(product => product.id === this.product.product_id);
+      const product = products.find(
+        product => product.id === this.product.product_id
+      );
 
       this.price = product ? product.price : null;
     });
@@ -31,10 +33,11 @@ export class CartDetailComponent implements OnInit {
     if (!this.quantityChangeSubscriber) {
       Observable.create(observer => {
         this.quantityChangeSubscriber = observer;
-      }).pipe(
-        throttleTime(500),
-        distinctUntilChanged()
-      )
+      })
+        .pipe(
+          throttleTime(500),
+          distinctUntilChanged()
+        )
         .subscribe(value => {
           this.quantity = value;
 
@@ -51,5 +54,4 @@ export class CartDetailComponent implements OnInit {
   removeItem(key: string) {
     this.wp.deleteFromCart(key).subscribe();
   }
-
 }
