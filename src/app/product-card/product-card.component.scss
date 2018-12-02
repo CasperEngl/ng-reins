@@ -8,7 +8,7 @@ $product-card-link-text-color: #222;
 $product-card-bg: white;
 
 .product-card {
-  margin: 0 0 $product-card-spacing;
+  height: 100%;
   background: $product-card-bg;
   border-radius: $product-card-border-radius;
   box-shadow: $product-card-box-shadow;
