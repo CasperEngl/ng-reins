@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, timer, combineLatest } from 'rxjs';
 
@@ -23,7 +24,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   timer: Observable<number>;
 
-  constructor(private wp: WordpressService, private route: ActivatedRoute) {}
+  constructor(private wp: WordpressService, private route: ActivatedRoute, private titleService: Title) {}
 
   ngOnInit() {
     this.timer = timer(this.animationDuration);
@@ -32,11 +33,17 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     // Then find the product where the ID matches the route param ID
     this.productSubscription = combineLatest(this.route.params, this.wp.products, (params, products) =>
       products.find(product => product.id === Number(params.id))
-    ).subscribe(response => this.product$ = response);
+    ).subscribe(response => {
+      this.product$ = response;
+
+      if (response)
+        this.titleService.setTitle(`${response.name} - Reins`)
+    });
   }
 
   ngOnDestroy() {
     this.productSubscription.unsubscribe();
+    this.titleService.setTitle('Reins')
   }
 
   addToCart({ product_id }: ProductData) {
