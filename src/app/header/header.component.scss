@@ -1,7 +1,18 @@
-.navbar {
-  z-index: 9999;
+header {
+  z-index: 3000;
+  position: relative;
+  display: inline-flex;
+  height: 100vh;
 }
 
-.navbar-brand {
+.brand {
+  padding: 1rem 0;
+  font-size: 1.35rem;
   font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar {
+  z-index: 9999;
+  height: 100vh;
 }

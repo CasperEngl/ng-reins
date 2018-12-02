@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageTransitionService } from '../page-transition.service';
+import { NavbarService } from '../navbar.service';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +8,7 @@ import { PageTransitionService } from '../page-transition.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  navbarCollapsed = true;
+  constructor(public pageTransition: PageTransitionService, public navbar: NavbarService) {}
 
-  constructor(public pageTransition: PageTransitionService) { }
-
-  ngOnInit() {
-  }
-
-  menuToggle() {
-    this.navbarCollapsed = !this.navbarCollapsed;
-  }
-
+  ngOnInit() {}
 }

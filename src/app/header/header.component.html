@@ -1,20 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-  <a routerLink="/" class="navbar-brand" (click)="pageTransition.play()">Reins</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" (click)="menuToggle()">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!--
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <a routerLink="/" class="navbar-brand" (click)="pageTransition.play()">Reins</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" (click)="menuToggle()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="navbarCollapsed">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        <a class="nav-link" routerLink="/" (click)="pageTransition.play()">Home</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/products" (click)="pageTransition.play()">Products</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/cart" (click)="pageTransition.play()">Cart</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="navbarCollapsed">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/" (click)="pageTransition.play()">Home</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/products" (click)="pageTransition.play()">Products</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/cart" (click)="pageTransition.play()">Cart</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+-->
+
+<header class="bg-white d-inline-flex flex-column align-items-center">
+  <a routerLink="/" class="brand mx-auto text-dark">Reins</a>
+
+  <div class="navbar navbar-light">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="navbar.toggle()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </div>
-</nav>
+
+</header>
+

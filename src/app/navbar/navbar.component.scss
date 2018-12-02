@@ -1,0 +1,25 @@
+.navbar {
+  z-index: 2000;
+  height: 150vh;
+}
+
+.navbar.fullscreen {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  padding: 5rem 0 5rem calc(100vw / 12 + 8rem);
+
+  &.hidden {
+    display: none;
+  }
+
+  &.visible {
+    display: flex;
+  }
+
+  .nav-link {
+    font-size: 2rem;
+    color: white;
+  }
+}

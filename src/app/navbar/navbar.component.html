@@ -1,0 +1,27 @@
+<!-- <nav class="navbar navbar-light fullscreen bg-dark" [ngClass]="navbar.hidden ? 'hidden' : 'visible'"> -->
+<nav class="navbar navbar-light fullscreen bg-dark" [@navBackground]="navbar.visible ? 'start' : 'end'">
+  <ul class="navbar-nav" [@navbar]="navbar.visible ? 'start' : 'end'">
+    <li
+      class="nav-item"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a class="nav-link" routerLink="/" (click)="pageTransition.play()">
+        Home
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <a
+        class="nav-link"
+        routerLink="/products"
+        (click)="pageTransition.play()">
+        Products
+      </a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/cart" (click)="pageTransition.play()">
+        Cart
+      </a>
+    </li>
+  </ul>
+</nav>
