@@ -23,6 +23,10 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FeaturedPipe } from './featured.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -50,8 +54,13 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     NgbModule.forRoot(),
     LottieAnimationViewModule.forRoot(),
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    library.add(faTimes);
+  }
+}
