@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class NavbarService {
-  public visible = true;
+  public visible = false;
 
   constructor() { }
 
