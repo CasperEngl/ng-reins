@@ -47,8 +47,7 @@ $product-card-bg: white;
     padding: $product-card-spacing;
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     word-break: break-all;
     color: $product-card-link-text-color;
 
