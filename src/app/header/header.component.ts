@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PageTransitionService } from '../page-transition.service';
+
 import { NavbarService } from '../navbar.service';
+import { PageTransitionService } from '../page-transition.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { NavbarService } from '../navbar.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(public pageTransition: PageTransitionService, public navbar: NavbarService) {}
+  constructor(public navbar: NavbarService, public pageTransition: PageTransitionService) {}
 
   ngOnInit() {}
 }
