@@ -7,7 +7,7 @@
   </section>
   <section class="container my-5">
     <div class="row">
-      <div class="col-md-4 col-sm-6 col-6 my-2" *ngFor="let product of products$ | async | search:'name,price,slug':query">
+      <div class="col-md-4 col-sm-6 my-2 animated fadeInUp" *ngFor="let product of products$ | async | search:'name,price,slug':query">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </div>
