@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 
-import { WordpressService, ProductData } from '../wordpress.service';
-import { PageTransitionService } from '../page-transition.service';
-import { AddProduct } from '../animations';
+import { WordpressService, ProductData } from '../services/wordpress.service';
+import { PageTransitionService } from '../services/page-transition.service';
+import { AddProduct } from '../animations/animations';
 
 @Component({
   selector: 'app-product-card',

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WordpressService } from './wordpress.service';
-import { PageTransitionService } from './page-transition.service';
-import { PageTransition } from './animations';
+import { WordpressService } from './services/wordpress.service';
+import { PageTransitionService } from './services/page-transition.service';
+import { PageTransition } from './animations/animations';
+import { NavbarService } from './services/navbar.service';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
   constructor(
     private wp: WordpressService,
     public pageTransition: PageTransitionService,
+    public navbar: NavbarService,
   ) {}
 
   ngOnInit() {

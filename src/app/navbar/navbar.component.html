@@ -31,7 +31,7 @@
       </div>
       <div class="col-md-8">
         <section class="row" [@navbar]="navbar.visible ? 'start' : 'end'">
-          <div class="col-sm-6 my-2" *ngFor="let product of products$ | async">
+          <div class="col-sm-6 my-2" *ngFor="let product of products$ | async | slice:2">
             <app-product-card [product]="product"></app-product-card>
           </div>
         </section>

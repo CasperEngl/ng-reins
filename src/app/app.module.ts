@@ -16,12 +16,12 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductRelationComponent } from './product-relation/product-relation.component';
 import { HomeComponent } from './home/home.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
-import { KeysPipe } from './keys.pipe';
+import { KeysPipe } from './pipes/keys.pipe';
 import { CartComponent } from './cart/cart.component';
-import { SearchPipe } from './search.pipe';
+import { SearchPipe } from './pipes/search.pipe';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { FeaturedPipe } from './featured.pipe';
+import { FeaturedPipe } from './pipes/featured.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 

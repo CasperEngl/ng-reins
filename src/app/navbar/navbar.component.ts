@@ -3,11 +3,11 @@ import { Observable } from 'rxjs';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { PageTransitionService } from '../page-transition.service';
-import { NavbarService } from '../navbar.service';
-import { WordpressService } from '../wordpress.service';
+import { PageTransitionService } from '../services/page-transition.service';
+import { NavbarService } from '../services/navbar.service';
+import { WordpressService } from '../services/wordpress.service';
 
-import { Navbar, NavBackground } from '../animations';
+import { Navbar, NavBackground } from '../animations/animations';
 
 @Component({
   selector: 'app-navbar',

@@ -5,7 +5,7 @@
 ></lottie-animation-view>
 <app-navbar></app-navbar>
 <app-header></app-header>
-<div class="page-wrapper">
+<div class="page-wrapper" [ngClass]="navbar.visible ? 'blur' : ''">
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>

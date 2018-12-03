@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavbarService } from '../navbar.service';
-import { PageTransitionService } from '../page-transition.service';
+import { NavbarService } from '../services/navbar.service';
+import { PageTransitionService } from '../services/page-transition.service';
 
 @Component({
   selector: 'app-header',

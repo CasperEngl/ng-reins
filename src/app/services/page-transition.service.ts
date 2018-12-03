@@ -4,6 +4,8 @@ import { Subject, Observable } from 'rxjs';
 import { WordpressService } from './wordpress.service';
 import { NavbarService } from './navbar.service';
 
+import animateScrollTo from 'animated-scroll-to';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -47,6 +49,8 @@ export class PageTransitionService {
 
   play(): Observable<boolean> {
     const subject = new Subject<boolean>();
+
+    animateScrollTo(0);
     
     this.navbar.hide();
     this.transition.goToAndPlay(0);

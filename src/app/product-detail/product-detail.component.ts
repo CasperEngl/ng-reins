@@ -3,8 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, timer, combineLatest } from 'rxjs';
 
-import { WordpressService, ProductData } from '../wordpress.service';
-import { AddProduct } from '../animations';
+import { WordpressService, ProductData } from '../services/wordpress.service';
+import { AddProduct } from '../animations/animations';
 
 @Component({
   selector: 'app-product-detail',

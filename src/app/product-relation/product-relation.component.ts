@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { WordpressService } from '../wordpress.service';
-import { PageTransitionService } from '../page-transition.service';
+import { WordpressService } from '../services/wordpress.service';
+import { PageTransitionService } from '../services/page-transition.service';
 
 @Component({
   selector: 'app-product-relation',

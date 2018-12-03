@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
-import { WordpressService } from '../wordpress.service';
+import { WordpressService } from '../services/wordpress.service';
 
 @Component({
   selector: 'app-products',

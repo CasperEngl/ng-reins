@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { WordpressService } from '../wordpress.service';
-import { PageTransitionService } from '../page-transition.service';
+import { WordpressService } from '../services/wordpress.service';
+import { PageTransitionService } from '../services/page-transition.service';
 
 @Component({
   selector: 'app-cart',

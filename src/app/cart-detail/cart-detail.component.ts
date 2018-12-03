@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { throttleTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { WordpressService } from '../wordpress.service';
+import { WordpressService } from '../services/wordpress.service';
 
 @Component({
   selector: 'app-cart-detail',
