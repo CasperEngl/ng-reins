@@ -1,5 +1,12 @@
-<main class="container my-5">
-  <section *ngIf="product$ as product">
+<main *ngIf="product$ as product">
+  <section class="jumbotron" *ngIf="product.images.length > 1">
+    <ng-container *ngFor="let image of (product.images | slice: 1)">
+      <figure class="gallery">
+        <img [src]="image.src" [alt]="image.alt" class="gallery__image" />
+      </figure>
+    </ng-container>
+  </section>
+  <section class="container my-5">
     <div class="row">
       <article class="col-sm-6">
         <figure class="product__image">
@@ -40,6 +47,9 @@
               [disabled]="animate"
             >
               {{ animate ? 'Added to cart' : 'Add to cart' }}
+            </button>
+            <button routerLink="/cart" class="btn btn-success">
+              Go to cart
             </button>
           </div>
         </footer>
