@@ -12,6 +12,10 @@ body {
   font-family: $font-family;
 }
 
+main {
+  min-height: 100vh;
+}
+
 img {
   width: 100%;
   height: auto;
@@ -37,6 +41,12 @@ h1, h2, h3, h4, h5, h6 {
 .display-3,
 .display-4 {
   font-weight: 700 !important;
+}
+
+.page-wrapper {
+  @media only screen and (min-width: 600px) {
+    padding-left: 6rem;
+  }
 }
 
 .page-transition {
