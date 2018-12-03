@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import { PageTransitionService } from '../page-transition.service';
 import { NavbarService } from '../navbar.service';
+import { WordpressService } from '../wordpress.service';
+
 import { Navbar, NavBackground } from '../animations';
 
 @Component({
@@ -15,7 +21,7 @@ import { Navbar, NavBackground } from '../animations';
         opacity: '1',
       },
       end: {
-        transform: 'translate(-1rem, 3rem)',
+        transform: 'translateY(3rem)',
         opacity: '0',
       },
     }),
@@ -33,7 +39,17 @@ import { Navbar, NavBackground } from '../animations';
   ],
 })
 export class NavbarComponent implements OnInit {
-  constructor(public navbar: NavbarService) {}
+  faTimes = faTimes;
 
-  ngOnInit() {}
+  products$: Observable<any[]>;
+
+  constructor(
+    private wp: WordpressService,
+    public pageTransition: PageTransitionService,
+    public navbar: NavbarService,
+  ) {}
+
+  ngOnInit() {
+    this.products$ = this.wp.products;
+  }
 }
