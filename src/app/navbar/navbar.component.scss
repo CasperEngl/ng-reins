@@ -5,10 +5,11 @@
 
 .navbar.fullscreen {
   position: fixed;
+  padding: 0 0 0 8rem;
   width: 100vw;
   height: 100vh;
   align-items: center;
-  padding: 5rem 0 5rem calc(100vw / 12 + 8rem);
+  background: rgba(black, .9);
 
   &.hidden {
     display: none;
@@ -19,7 +20,32 @@
   }
 
   .nav-link {
+    position: relative;
+    display: inline-block;
     font-size: 2rem;
     color: white;
+
+    &:hover {
+      &::after {
+        width: 125%;
+      }
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 4px;
+      width: 75%;
+      background: white;
+      transition: all 700ms cubic-bezier(.1,1.2,.9,1);
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar.fullscreen {
+    padding: 0 0 0 6rem;
   }
 }
