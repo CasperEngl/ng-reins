@@ -1,0 +1,13 @@
+{
+    "name": "casper/reins",
+    "type": "wp-theme",
+    "require": {
+        "automattic/woocommerce": "^2.0"
+    },
+    "authors": [
+        {
+            "name": "Casper Engelmann",
+            "email": "me@casperengelmann.com"
+        }
+    ]
+}
