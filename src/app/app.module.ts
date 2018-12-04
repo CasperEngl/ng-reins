@@ -26,7 +26,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -61,6 +61,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppModule {
   constructor() {
-    library.add(faTimes);
+    library.add(faTimes, faPlus, faMinus);
   }
 }
