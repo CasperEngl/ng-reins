@@ -1,7 +1,8 @@
 @import '../animations/animations';
 
 $hero-title-after-animation-duration: 2000ms;
-$hero-sub-animation-delay: 400ms;
+$hero-title-after-animation-delay: 500ms;
+$hero-sub-animation-delay: 1000ms;
 
 .hero {
   position: relative;
@@ -35,6 +36,7 @@ $hero-sub-animation-delay: 400ms;
     animation-name: hideTitleWhileRevealing;
     animation-duration: $hero-title-after-animation-duration;
     animation-fill-mode: both;
+    animation-delay: $hero-title-after-animation-delay;
     
     &::after {
       content: '';
@@ -48,6 +50,7 @@ $hero-sub-animation-delay: 400ms;
       animation-name: revealTitle;
       animation-duration: $hero-title-after-animation-duration;
       animation-fill-mode: both;
+      animation-delay: $hero-title-after-animation-delay;
     }
   }
 
