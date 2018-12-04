@@ -79,4 +79,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     this.quantity = Number(target.value);
   }
+
+  rate(event: any) {
+    console.log(event);
+  }
 }

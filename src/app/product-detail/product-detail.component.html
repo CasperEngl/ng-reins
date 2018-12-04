@@ -18,11 +18,35 @@
       </article>
       <article class="col-sm-6">
         <header class="mb-5">
+          <ng-container *ngFor="let category of product.categories">
+            <span
+              class="badge badge-pill bg-white text-muted py-2 px-3 my-1 mr-1"
+              >{{ category.name }}</span
+            >
+          </ng-container>
           <h1>{{ product.name }}</h1>
+
+          <!-- Rating start -->
+          <ng-template #rating let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill" (click)="rate($event)"
+                >&hearts;</span
+              >&hearts;
+            </span>
+          </ng-template>
+
+          <ngb-rating
+            [(rate)]="product.average_rating"
+            [starTemplate]="rating"
+            (click)="rate(product.average_rating)"
+            max="5"
+          ></ngb-rating>
+          <!-- <p *ngIf="product.average_rating > 0">{{ product.average_rating }}</p> -->
+          <!-- Starting end -->
         </header>
         <section>
           <h4>{{ product.price | currency: 'DKK' }}</h4>
-          <div [innerHTML]="product.description"></div>
+          <div [innerHTML]="product.short_description"></div>
         </section>
         <footer>
           <div class="form-group row">
@@ -39,22 +63,69 @@
               />
             </div>
           </div>
-          <div class="btn-group">
-            <button
-              class="btn btn-primary"
-              (click)="addToCart({ product_id: product.id })"
-              [@addProduct]="animate ? 'start' : 'end'"
-              [disabled]="animate"
-            >
-              {{ animate ? 'Added to cart' : 'Add to cart' }}
-            </button>
-            <button routerLink="/cart" class="btn btn-success">
-              Go to cart
-            </button>
-          </div>
+          <button
+            class="btn btn-primary mr-2"
+            (click)="addToCart({ product_id: product.id })"
+            [@addProduct]="animate ? 'start' : 'end'"
+            [disabled]="animate"
+          >
+            {{ animate ? 'Added to cart' : 'Add to cart' }}
+          </button>
+          <button routerLink="/cart" class="btn btn-link">
+            Go to cart
+          </button>
         </footer>
       </article>
     </div>
+    <section class="my-3">
+      <ngb-tabset justify="justified">
+        <ngb-tab>
+          <ng-template ngbTabTitle>Description</ng-template>
+          <ng-template ngbTabContent>
+            <div class="my-2">
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis
+                in quos odio, minus repellendus itaque eaque facilis natus
+                explicabo tenetur laboriosam velit nesciunt illum sunt corrupti
+                delectus, molestiae, eum quisquam rerum? Saepe nostrum laborum
+                nisi illo quia similique, ducimus tenetur possimus. Aliquid,
+                mollitia. Quod animi modi dicta explicabo quam aut nemo
+                dignissimos ipsum aperiam minus. Nulla, laborum facere.
+                Voluptas, suscipit?
+              </p>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Title</ng-template>
+          <ng-template ngbTabContent>
+            <div class="my-2">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Exercitationem molestiae neque perferendis nulla iure, ipsam
+                dignissimos reiciendis reprehenderit, tempora at quis veritatis
+                dolorem fugiat porro officia assumenda. Commodi cum distinctio,
+                quis aliquam cupiditate atque et, totam, nesciunt expedita odit
+                temporibus.
+              </p>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Title</ng-template>
+          <ng-template ngbTabContent>
+            <div class="my-2">
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Molestiae hic itaque est adipisci voluptatibus cum officiis, in
+                id odio obcaecati porro quisquam magni ipsa autem vitae quidem
+                assumenda aliquam consequuntur!
+              </p>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </section>
     <footer class="my-5" *ngIf="product.related_ids.length">
       <h2>Related Products</h2>
       <div class="row">
