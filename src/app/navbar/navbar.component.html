@@ -1,10 +1,21 @@
-<!-- <nav class="navbar navbar-light fullscreen bg-dark" [ngClass]="navbar.hidden ? 'hidden' : 'visible'"> -->
-<nav class="navbar navbar-light fullscreen" [@navBackground]="navbar.visible ? 'start' : 'end'">
+<!--
+  <nav class="navbar navbar-light fullscreen bg-dark" [ngClass]="navbar.hidden ? 'hidden' : 'visible'">
+-->
+<nav
+  class="navbar navbar-light fullscreen"
+  [@navBackground]="navbar.visible ? 'start' : 'end'"
+>
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-3">
         <ul class="navbar-nav" [@navbar]="navbar.visible ? 'start' : 'end'">
-          <fa-icon [icon]="['fas', 'times']" size="3x" (click)="navbar.hide()" class="mb-4 text-white-50" style="cursor: pointer;"></fa-icon>
+          <fa-icon
+            [icon]="['fas', 'times']"
+            size="3x"
+            (click)="navbar.hide()"
+            class="mb-4 text-white-50"
+            style="cursor: pointer;"
+          ></fa-icon>
           <li
             class="nav-item"
             routerLinkActive="active"
@@ -18,12 +29,17 @@
             <a
               class="nav-link"
               routerLink="/products"
-              (click)="pageTransition.play()">
+              (click)="pageTransition.play()"
+            >
               Products
             </a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/cart" (click)="pageTransition.play()">
+            <a
+              class="nav-link"
+              routerLink="/cart"
+              (click)="pageTransition.play()"
+            >
               Cart
             </a>
           </li>
@@ -31,7 +47,10 @@
       </div>
       <div class="col-md-8">
         <section class="row" [@navbar]="navbar.visible ? 'start' : 'end'">
-          <div class="col-sm-6 my-2" *ngFor="let product of products$ | async | slice:2">
+          <div
+            class="col-sm-6 my-2"
+            *ngFor="let product of (products$ | async | slice: 2)"
+          >
             <app-product-card [product]="product"></app-product-card>
           </div>
         </section>
