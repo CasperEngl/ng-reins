@@ -1,5 +1,34 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
+use Automattic\WooCommerce\Client;
+
+function get_client() {
+    return new Client(
+        get_site_url(),
+        'ck_7bb07ccbe7ced1ad0ceb10fb5a45a90c5d9a2d04',
+        'cs_ac46a1fee9066d4b4e844966e614fe6c03df6f8c',
+        [
+            'wp_api' => true,
+            'version' => 'wc/v3',
+        ]
+    );
+}
+
+function view_products() {
+    $woocommerce = get_client();
+
+    return $woocommerce->get( 'products' );
+}
+
+add_action('rest_api_init', function () {
+    register_rest_route( 'reins', '/products', array(
+        'methods' => 'GET',
+        'callback' => 'view_products'
+    ));
+});
+
 function reins_scripts() {
   $time_format = 'ymd-Gis';
 
