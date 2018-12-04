@@ -1,12 +1,40 @@
 <li class="list-group-item list-group-item-action my-1">
   <div class="row justify-content-between align-items-center">
     <div class="col-auto">
-      <a [routerLink]="['../', 'product', product.product_id]" class="product__name h4">{{ product.product_name }}</a>
-      <span class="h5 text-muted ml-3" *ngIf="product.quantity">{{ price | currency:'DKK' }}</span>
+      <a
+        [routerLink]="['../', 'product', product.product_id]"
+        class="product__name h4"
+        >{{ product.product_name }}</a
+      >
+      <span class="h5 text-muted ml-3" *ngIf="product.quantity">{{
+        price | currency: 'DKK'
+      }}</span>
     </div>
     <div class="col-auto">
-      <input class="form-control d-inline-block w-auto" type="number" [min]="1" [value]="product.quantity" (input)="product.quantity = $event.target.value" (keyup)="changeQuantity($event, product.key)">
-      <a (click)="removeItem(product.key)" class="btn btn-link">Remove</a>
+      <fa-icon
+        [icon]="['fas', 'minus']"
+        size="1x"
+        class="text-muted px-2"
+        style="cursor: pointer;"
+      ></fa-icon>
+      <input
+        class="form-control d-inline-block text-center"
+        type="number"
+        [min]="1"
+        [value]="product.quantity"
+        (input)="product.quantity = $event.target.value"
+        (keyup)="changeQuantity($event, product.key)"
+        style="width: 100px;"
+      />
+      <fa-icon
+        [icon]="['fas', 'plus']"
+        size="1x"
+        class="text-muted px-2"
+        style="cursor: pointer;"
+      ></fa-icon>
+      <button (click)="removeItem(product.key)" class="btn btn-link">
+        Remove
+      </button>
     </div>
   </div>
 </li>

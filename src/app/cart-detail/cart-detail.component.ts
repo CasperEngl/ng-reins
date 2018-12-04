@@ -1,13 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable, Subscriber, timer } from 'rxjs';
 import { throttleTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { WordpressService } from '../services/wordpress.service';
+import { FadeOut } from '../animations/animations';
 
 @Component({
   selector: 'app-cart-detail',
   templateUrl: './cart-detail.component.html',
-  styleUrls: ['./cart-detail.component.scss']
+  styleUrls: ['./cart-detail.component.scss'],
+  animations: [
+    FadeOut({
+      easing: '350ms ease-in-out',
+    }),
+  ],
 })
 export class CartDetailComponent implements OnInit {
   @Input() product: any;
@@ -20,7 +26,7 @@ export class CartDetailComponent implements OnInit {
   ngOnInit() {
     this.wp.products.subscribe(products => {
       const product = products.find(
-        product => product.id === this.product.product_id
+        product => product.id === this.product.product_id,
       );
 
       this.price = product ? product.price : null;
@@ -36,14 +42,14 @@ export class CartDetailComponent implements OnInit {
       })
         .pipe(
           throttleTime(500),
-          distinctUntilChanged()
+          distinctUntilChanged(),
         )
         .subscribe(value => {
           this.quantity = value;
 
           this.wp.updateInCart({
             cart_item_key: cart_item_key,
-            quantity: this.quantity
+            quantity: this.quantity,
           });
         });
     }
@@ -52,6 +58,6 @@ export class CartDetailComponent implements OnInit {
   }
 
   removeItem(key: string) {
-    this.wp.deleteFromCart(key).subscribe();
+    this.wp.deleteFromCart(key);
   }
 }
