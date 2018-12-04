@@ -67,3 +67,9 @@ export interface IPageTransition {
   start: IPageTransitionStart;
   end: IPageTransitionEnd;
 }
+
+// ============================================================
+
+export interface IFadeOut {
+  easing: string;
+}

@@ -6,6 +6,7 @@ import {
   animate,
   query,
   animateChild,
+  AnimationTriggerMetadata,
 } from '@angular/animations';
 
 import {
@@ -13,9 +14,12 @@ import {
   INavBackground,
   INavbar,
   IPageTransition,
+  IFadeOut,
 } from './animations.d';
 
-export function PageTransition(options: IPageTransition) {
+export function PageTransition(
+  options: IPageTransition,
+): AnimationTriggerMetadata {
   return trigger('pageTransition', [
     state(
       'start',
@@ -29,12 +33,11 @@ export function PageTransition(options: IPageTransition) {
         ...options.end,
       }),
     ),
-    transition('start => end', [animate(options.easing)]),
-    transition('end => start', [animate(options.easing)]),
+    transition('* => *', [animate(options.easing)]),
   ]);
 }
 
-export function Navbar(options: INavbar) {
+export function Navbar(options: INavbar): AnimationTriggerMetadata {
   return trigger('navbar', [
     state(
       'start',
@@ -48,12 +51,13 @@ export function Navbar(options: INavbar) {
         ...options.end,
       }),
     ),
-    transition('start => end', [animate(options.easing)]),
-    transition('end => start', [animate(options.easing)]),
+    transition('* => *', [animate(options.easing)]),
   ]);
 }
 
-export function NavBackground(options: INavBackground) {
+export function NavBackground(
+  options: INavBackground,
+): AnimationTriggerMetadata {
   return trigger('navBackground', [
     state(
       'start',
@@ -75,7 +79,7 @@ export function NavBackground(options: INavBackground) {
   ]);
 }
 
-export function AddProduct(options: IAddProduct) {
+export function AddProduct(options: IAddProduct): AnimationTriggerMetadata {
   return trigger('addProduct', [
     state(
       'start',
@@ -91,7 +95,24 @@ export function AddProduct(options: IAddProduct) {
         borderColor: options.end.borderColor,
       }),
     ),
+    transition('* => *', [animate(options.easing)]),
+  ]);
+}
+
+export function FadeOut(options: IFadeOut): AnimationTriggerMetadata {
+  return trigger('fadeOut', [
+    state(
+      'start',
+      style({
+        opacity: '1',
+      }),
+    ),
+    state(
+      'end',
+      style({
+        opacity: '0',
+      }),
+    ),
     transition('start => end', [animate(options.easing)]),
-    transition('end => start', [animate(options.easing)]),
   ]);
 }
