@@ -1,33 +1,44 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require_once('vendor/autoload.php');
 
 use Automattic\WooCommerce\Client;
 
-function get_client() {
-    return new Client(
-        get_site_url(),
-        'ck_7bb07ccbe7ced1ad0ceb10fb5a45a90c5d9a2d04',
-        'cs_ac46a1fee9066d4b4e844966e614fe6c03df6f8c',
-        [
-            'wp_api' => true,
-            'version' => 'wc/v3',
-        ]
-    );
+class Reins {
+    function __construct() {
+        // Add REST route with reins Options at /wp-json/reins/api
+        add_action('rest_api_init', function () {
+            register_rest_route(
+                'reins',
+                '/products',
+                array(
+                    'methods' => 'GET',
+                    'callback' => array($this, 'view_products'),
+                )
+            );
+        });
+    }
+
+    function get_client() {
+        return new Client(
+            get_site_url(),
+            'ck_7bb07ccbe7ced1ad0ceb10fb5a45a90c5d9a2d04',
+            'cs_ac46a1fee9066d4b4e844966e614fe6c03df6f8c',
+            [
+                'wp_api' => true,
+                'version' => 'wc/v3',
+            ]
+        );
+    }
+
+    function view_products() {
+        $woocommerce = $this->get_client();
+    
+        return $woocommerce->get('products');
+    }
 }
 
-function view_products() {
-    $woocommerce = get_client();
-
-    return $woocommerce->get( 'products' );
-}
-
-add_action('rest_api_init', function () {
-    register_rest_route( 'reins', '/products', array(
-        'methods' => 'GET',
-        'callback' => 'view_products'
-    ));
-});
+new Reins();
 
 function reins_scripts() {
   $time_format = 'ymd-Gis';
@@ -80,15 +91,21 @@ function prepare_product_images($response, $post, $request) {
 }
 add_filter('woocommerce_rest_prepare_product_object', 'prepare_product_images', 10, 3);
 
-function nt_cors_enable() {
-  header('Access-Control-Allow-Origin: ' . get_http_origin());
-  header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
-  header('Access-Control-Allow-Credentials: true');
-  header('Access-Control-Allow-Headers: Authorization, Content-Type');
-  header('Access-Control-Expose-Headers: x-wc-totalpages, x-wc-total', false);
-  if ( 'OPTIONS' == $_SERVER['REQUEST_METHOD'] ) {
-      status_header(200);
-      exit();
-    }
-}
-add_action( 'init', 'nt_cors_enable' );
+// Hook.
+add_action( 'rest_api_init', 'wp_rest_allow_all_cors', 15 );
+/**
+ * Allow all CORS.
+ *
+ * @since 1.0.0
+ */
+function wp_rest_allow_all_cors() {
+    // Remove the default filter.
+    remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+    // Add a Custom filter.
+    add_filter( 'rest_pre_serve_request', function( $value ) {
+        header( 'Access-Control-Allow-Origin: *' );
+        header( 'Access-Control-Allow-Methods: GET, OPTIONS' );
+        header( 'Access-Control-Allow-Credentials: true' );
+        return $value;
+    });
+} // End fucntion wp_rest_allow_all_cors().
